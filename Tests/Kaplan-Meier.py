@@ -24,3 +24,13 @@ class KaplanMeierTestsAgainstLifelines(unittest.TestCase):
         surPyval_estimate = [x[1] for x in KM(times, event).fit()]
         for pair in zip(lifelines_estimate, surPyval_estimate):
             self.assertAlmostEqual(pair[0], pair[1], 2)
+
+    def test_with_duplicates_censoring(self):
+
+        times = [1, 2, 2, 3]
+        event = [1, 0, 1, 1]
+        fitter = KaplanMeierFitter()
+        lifelines_estimate = sorted(list(set(fitter.fit(times, event).survival_function_["KM_estimate"])), reverse = True)
+        surPyval_estimate = [x[1] for x in KM(times, event).fit()]
+        for pair in zip(lifelines_estimate, surPyval_estimate):
+            self.assertAlmostEqual(pair[0], pair[1], 2)

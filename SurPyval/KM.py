@@ -11,7 +11,11 @@ class KM:
         self.data = self._preprocess_data(times, event)
 
     def _preprocess_data(self, times, event):
-        return sorted(zip(times, event), key = lambda pair: pair[0])
+        '''
+        Sort two lists into a single list of lists ordered by time ascending and with events before censors
+        (makes life easier when censors and events happen at the same time
+        '''
+        return sorted(zip(times, event), key = lambda pair: (pair[0], pair[1] * - 1))
 
     def fit(self):
         '''
@@ -45,7 +49,7 @@ class KM:
 
 if __name__ == "__main__":
     times = [1, 2, 2, 3]
-    event = [1, 1, 1, 1]
+    event = [1, 0, 1, 1]
     km = KM(times, event)
     print(km.fit())
     fitter = KaplanMeierFitter()
