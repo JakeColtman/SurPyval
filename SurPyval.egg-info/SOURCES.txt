@@ -1,0 +1,5 @@
+setup.py
+SurPyval.egg-info/PKG-INFO
+SurPyval.egg-info/SOURCES.txt
+SurPyval.egg-info/dependency_links.txt
+SurPyval.egg-info/top_level.txt
