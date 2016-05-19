@@ -1,3 +1,4 @@
+from lifelines import KaplanMeierFitter
 
 class KM:
 
@@ -33,8 +34,20 @@ class KM:
             period_rate = period_survival_rate(len(data) + 1)
             period_survival = past_risks[-1][1] * period_rate
 
-            past_risks.append([next_pair[0], period_survival])
+            if past_risks[-1][0] == next_pair[0]:
+                past_risks[-1][1] = period_survival
+            else:
+                past_risks.append([next_pair[0], period_survival])
 
             return calculate(data, past_risks)
 
         return calculate(self.data, [[0, 1]])
+
+if __name__ == "__main__":
+    times = [1, 2, 2, 3]
+    event = [1, 1, 1, 1]
+    km = KM(times, event)
+    print(km.fit())
+    fitter = KaplanMeierFitter()
+    lifelines_estimate = sorted(list(set(fitter.fit(times, event).survival_function_["KM_estimate"])), reverse = True)
+    print(lifelines_estimate)
