@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SurPyval/KM.py" afterPath="$PROJECT_DIR$/SurPyval/KM.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tests/Kaplan-Meier.py" afterPath="$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SurPyval/CoxPH.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tests/CoxPH.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,12 +59,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KM.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KM.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/KM.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54390246">
+            <state vertical-scroll-proportion="0.0">
               <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoxPH.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/CoxPH.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoxPH.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/CoxPH.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33170733">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -87,6 +112,8 @@
         <option value="$PROJECT_DIR$/SurPyval/__init__.py" />
         <option value="$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
         <option value="$PROJECT_DIR$/SurPyval/KM.py" />
+        <option value="$PROJECT_DIR$/SurPyval/CoxPH.py" />
+        <option value="$PROJECT_DIR$/Tests/CoxPH.py" />
       </list>
     </option>
   </component>
@@ -176,7 +203,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in Kaplan-Meier">
+  <component name="RunManager" selected="Python tests.Unittests in CoxPH">
     <configuration default="false" name="KM" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -190,23 +217,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SurPyval" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SurPyval/KM.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Kaplan-Meier" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SurPyval" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -233,29 +243,41 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_no_censoring" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="CoxPH" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SurPyval" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SurPyval" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
-      <option name="CLASS_NAME" value="KaplanMeierTestsAgainstLifelines" />
-      <option name="METHOD_NAME" value="test_with_duplicates_no_censoring" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SurPyval/CoxPH.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_censoring" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="CoxPH (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SurPyval" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/CoxPH.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in CoxPH" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -265,11 +287,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="SurPyval" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
-      <option name="CLASS_NAME" value="KaplanMeierTestsAgainstLifelines" />
-      <option name="METHOD_NAME" value="test_with_duplicates_censoring" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/CoxPH.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -401,18 +423,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.KM" />
-      <item index="1" class="java.lang.String" itemvalue="Python.Kaplan-Meier" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in Kaplan-Meier" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_no_censoring" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_censoring" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in Kaplan-Meier" />
+      <item index="2" class="java.lang.String" itemvalue="Python.CoxPH" />
+      <item index="3" class="java.lang.String" itemvalue="Python.CoxPH (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in CoxPH" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in Kaplan-Meier" />
-        <item index="1" class="java.lang.String" itemvalue="Python.KM" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_censoring" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_no_censoring" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Kaplan-Meier" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in CoxPH" />
+        <item index="1" class="java.lang.String" itemvalue="Python.CoxPH (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.CoxPH" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in Kaplan-Meier" />
+        <item index="4" class="java.lang.String" itemvalue="Python.KM" />
       </list>
     </recent_temporary>
   </component>
@@ -430,32 +452,32 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_KaplanMeierTestsAgainstLifelines_test_with_duplicates_censoring - 2016.05.19 at 20h 55m 55s.xml">
-      <configuration name="Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_censoring" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 21m 11s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_KaplanMeierTestsAgainstLifelines_test_with_duplicates_no_censoring - 2016.05.19 at 20h 51m 27s.xml">
-      <configuration name="Unittest KaplanMeierTestsAgainstLifelines.test_with_duplicates_no_censoring" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 22m 22s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 42m 05s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 22m 42s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 43m 29s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 23m 06s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 44m 15s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 23m 46s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 49m 22s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 24m 07s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 49m 50s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 24m 19s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 54m 43s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 26m 09s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 20h 56m 30s.xml">
-      <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
+    <history-entry file="Unittests_in_CoxPH - 2016.05.21 at 09h 27m 06s.xml">
+      <configuration name="Unittests in CoxPH" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_Kaplan-Meier - 2016.05.19 at 21h 00m 28s.xml">
       <configuration name="Unittests in Kaplan-Meier" configurationId="tests" />
@@ -470,7 +492,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25128207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25128207" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -526,6 +548,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/KM.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/Kaplan-Meier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -536,11 +566,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/KM.py">
+    <entry file="file://$PROJECT_DIR$/SurPyval/CoxPH.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54390246">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="201" column="0" selection-start-line="201" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/CoxPH.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33170733">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
