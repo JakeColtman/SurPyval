@@ -164,7 +164,7 @@ class CoxPH:
         converging = True
         # 50 iterations steps with N-R is a lot.
         # Expected convergence is ~10 steps
-        while converging and i < 50 and step_size > 0.001:
+        while i < 50:# and step_size > 0.001:
 
             output = get_gradients(X.values, beta, T.values, E.values, include_likelihood=include_likelihood)
             h, g = output[:2]
