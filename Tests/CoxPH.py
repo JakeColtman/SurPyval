@@ -17,7 +17,7 @@ class CoxPHTest(TestCase):
         cf.fit(rossi_dataset, 'week', event_col='arrest')
         old_model = cf.hazards_
         for estimate in zip(list(new_model), list(old_model.iloc[0])):
-            self.assertEqual(estimate[0], estimate[1])
+            self.assertAlmostEqual(estimate[0][0], estimate[1], 3)
 
 
 
