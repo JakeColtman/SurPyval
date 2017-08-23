@@ -62,7 +62,7 @@ class CoxPH:
 
         out = sess.run([b], {x:df.age.astype(float)})
         return out.b
-
+        
 from lifelines.datasets import load_rossi
 rossi_dataset = load_rossi()
 cf = CoxPH(rossi_dataset, "week", "arrest")
