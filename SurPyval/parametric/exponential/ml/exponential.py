@@ -29,4 +29,8 @@ class MaximumLikihoodFittedExponential:
     def posterior_predictive(self):
         return NumpySampler(np.random.exponential, scale = self.fitted_l)
 
+    def survival_function(self, y):
+        l_s = self.fitted_l * y
+        return np.exp(l_s * -1)
+
 
