@@ -1,14 +1,13 @@
 from __future__ import division
 import numpy as np
 from SurPyval.distributions.gamma import Gamma   
-from SurPyval.core.sampling import exp
+from SurPyval.core.sampling import exp, Sampler
 
 class ConjugatePriorFittedExponential:
 
     def __init__(self, data, event):
         self.data = data
         self.event = event
-        self.fit()
 
     def fit(self, gamma_prior):
         d = np.sum(self.event)
@@ -17,7 +16,10 @@ class ConjugatePriorFittedExponential:
         return self
 
     def posterior_predictive(self):
-        return exp(self.fitted_l)
+        def sampling_function(n_samples):
+            l_s = self.fitted_l.sample(n_samples)
+            return np.array(map(lambda x: np.random.exponential(x), l_s))
+        return Sampler(sampling_function)
 
     def survival_function(self, y):
         l_s = self.fitted_l * y

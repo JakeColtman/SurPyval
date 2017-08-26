@@ -4,6 +4,7 @@ from SurPyval.core.sampling import NumpySampler
 class Gamma(NumpySampler):
     
     def __init__(self, alpha, llambda):
+        self.alpha, self.llambda = alpha, llambda
         self.sampler = NumpySampler(gamma, shape = alpha, scale = 1./ llambda)
 
     def sample(self, n_samples):
