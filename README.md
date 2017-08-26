@@ -10,3 +10,10 @@ SurPyval is a strongly opinionated survival analysis library.  It has beliefs ab
 * Model stacking and averaging is a _good thing_
 * We should be continually checking models and results for robustness
 * Bayesian and frequentist models are better together
+
+## Things which actually work:
+
+### Exponential:
+
+* ML fitting
+* Bayesian conjugate fitting
