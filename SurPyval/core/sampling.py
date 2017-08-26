@@ -10,6 +10,9 @@ class Sampler:
     
     def __sub__(self, other):
         return self.combine_samplers(lambda a, b: a - b, x, y)
+
+    def __mult__(self, other):
+        return self.apply_to_sampler(lambda a, b: a * b)
         
     def sample(self, n_samples):
         return self.sample_function(n_samples)

@@ -1,4 +1,5 @@
 from SurPyval.distributions.exponential import Exponential
+from SurPyval.core.sampling import NumpySampler
 
 class MaximumLikihoodFittedExponentialRegression:
 
@@ -25,6 +26,6 @@ class MaximumLikihoodFittedExponentialRegression:
 
     def sample_posterior_predictive(self, x, n_samples):
         llambda = np.dot(x_s.T, self.fitted_beta)
-        return np.random.exponential(llambda, n_samples)
+        return NumpySampler(np.random.exponential, scale = llambda)
 
 
