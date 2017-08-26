@@ -6,13 +6,13 @@ class Sampler:
         self.sample_function = sample_function
         
     def __add__(self, other):
-        return self.combine_samplers(lambda a, b: a + b, x, y)
+        return self.combine_samplers(lambda a, b: a + b, self, other)
     
     def __sub__(self, other):
-        return self.combine_samplers(lambda a, b: a - b, x, y)
+        return self.combine_samplers(lambda a, b: a - b, self, other)
 
-    def __mult__(self, other):
-        return self.apply_to_sampler(lambda a, b: a * b)
+    def __mul__(self, other):
+        return self.apply_to_sampler(lambda a: a * other, self)
         
     def sample(self, n_samples):
         return self.sample_function(n_samples)
