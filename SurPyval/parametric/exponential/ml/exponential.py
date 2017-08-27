@@ -8,7 +8,6 @@ class MaximumLikihoodFittedExponential:
     def __init__(self, y_s, event):
         self.y_s = y_s
         self.event = event
-        self.fit()
 
     @staticmethod
     def log_lik(data, event, l):
@@ -32,5 +31,3 @@ class MaximumLikihoodFittedExponential:
     def survival_function(self, y):
         l_s = self.fitted_l * y
         return np.exp(l_s * -1)
-
-

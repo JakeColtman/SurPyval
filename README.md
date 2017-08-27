@@ -17,3 +17,4 @@ SurPyval is a strongly opinionated survival analysis library.  It has beliefs ab
 
 * ML fitting
 * Bayesian conjugate fitting
+* ML exponential regression
