@@ -22,7 +22,6 @@ class MaximumLikihoodFittedExponentialRegression:
             starting_point = tuple([0.5] * self.x_s.shape[1])
         result = minimize(function_to_minimize, starting_point)
         self.fitted_l = result["x"] * -1
-        self.log_lik = self.log_lik(self.y_s, self.x_s, self.event, self.fitted_l)
         return self
 
     def posterior_predictive(self, x):

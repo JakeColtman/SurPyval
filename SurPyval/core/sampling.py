@@ -40,7 +40,17 @@ class NumpySampler(Sampler):
         
     def sample(self, n_samples):
         return self.np_random(size = n_samples, **self.kwargs).reshape(n_samples, 1)  
-    
+
+class EmceeSampler(Sampler):
+
+    def __init__(self, sampler, pos):
+        self.sampler = sampler
+        self.pos = pos
+
+    def sample(self, n_samples):
+        self.sampler.reset()
+        self.sampler.run_mcmc(self.pos, n_samples)
+        return self.sampler.flatchain
 
 def dot(x, y):
     return Sampler.combine_samplers(np.dot, x, y)
