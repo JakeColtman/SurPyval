@@ -112,15 +112,15 @@ class FittedWeibull:
             if alpha <= 0:
                 return - np.inf
             llambda = np.dot(self.data["x"].T, beta)
-            return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
+            return self.data["d"] * np.log(alpha) + np.dot(self.data["event"].T, llambda) + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.dot(np.exp(llambda).T,self.data["y"] ** alpha)
 
         return log_lik() + log_alpha_prior() + log_beta_prior()
 
-    def flatten_parameters(self, alpha, llambda):
-        return np.array([alpha, llambda])
+    def flatten_parameters(self, alpha, beta):
+        return np.array([alpha] + beta)
 
     def unflatten_parameters(self, parameters):
-        return {"alpha": parameters[0], "llambda": parameters[1]}
+        return {"alpha": parameters[0], "beta": parameters[1:]}
 
     def log_likihood_flat(self, parameters):
         return self.log_likihood(**self.unflatten_parameters(parameters))
