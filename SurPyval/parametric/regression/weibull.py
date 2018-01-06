@@ -20,21 +20,22 @@ class DistributionNode:
     def sample_posterior(self, n_samples = 10000):
         return self.posterior.sample(n_samples)
 
-class PriorPredictiveDistribution(NumpySampler):
+class PredictiveDistribution(NumpySampler):
     
-    def __init__(self, alpha_dist, llambda_dist):
+    def __init__(self, alpha_dist, beta_dist):
         self.alpha_dist = alpha_dist
-        self.llambda_dist = llambda_dist
+        self.beta_dist = beta_dist
 
-    def sample(self, n_samples):
+    def sample(self, x, n_samples):
         alpha_samples = self.alpha_dist.sample(n_samples)
-        llambda_samples = self.llambda_dist.sample(n_samples)
+        beta_samples = self.beta_dist.sample(n_samples)
+        llambda_samples = map(lambda sample: np.dot(x.T, beta_samples))
         samples = zip(alpha_samples, llambda_samples)
         prior_predictive_samples = np.array(map(lambda x: np.random.weibull(x[0], 1.0 / np.log(x)), samples))
         return prior_predictive_samples
 
-    def plot(self, n_samples = 10000):
-        sns.distplot(self.sample(n_samples))
+    def plot(self, x, n_samples = 10000):
+        sns.distplot(self.sample(x, n_samples))
 
 class FittedWeibull:
     """
@@ -68,10 +69,9 @@ class FittedWeibull:
             "x": x
         }
         self.nodes = {
-            "llambda": DistributionNode("llambda", prior_dict["llambda"], None),
             "beta": DistributionNode("beta", prior_dict["beta"], None),
             "alpha": DistributionNode("alpha", prior_dict["alpha"], None),
-            "y": DistributionNode("y", PriorPredictiveDistribution(prior_dict["alpha"], prior_dict["llambda"]), None)
+            "y": DistributionNode("y", PriorPredictiveDistribution(prior_dict["alpha"], prior_dict["beta"]), None)
         }
 
     def fit(self, n_walkers = 4, burn = 500):
