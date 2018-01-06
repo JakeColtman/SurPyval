@@ -92,7 +92,8 @@ class FittedWeibull:
 
     def maximum_likihood(self):
         neg_log_lik = lambda *args: -self.log_likihood_flat(*args)
-        result = minimize(neg_log_lik, [1, 1])
+        n_dim = self.constants["mu_0"].shape[0] + 1
+        result = minimize(neg_log_lik, [1] * n_dim)
         max_lik_point = result["x"]
         return max_lik_point
 
