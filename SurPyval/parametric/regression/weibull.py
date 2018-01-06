@@ -146,24 +146,33 @@ class FittedWeibull:
                             fixed=True, offset=(0,10)))
         pgm.add_node(daft.Node("kappa_0", r"$\kappa_0$", 0.7, 3, scale=2,
                             fixed=True, offset=(0,6)))
-        
-        pgm.add_node(daft.Node("lambda", r"$\lambda$", 1.5, 2.4, scale=2))
+
+        pgm.add_node(daft.Node("beta", r"$\beta$", 1.5, 2.4, scale=2))
         pgm.add_node(daft.Node("mu_0", r"$\mu_0$", 1.3, 3, scale=2,
                             fixed=True, offset=(0,10)))
         pgm.add_node(daft.Node("sigma_0", r"$\sigma_0$", 1.7, 3, scale=2,
                             fixed=True, offset=(0,6)))
         
-        pgm.add_node(daft.Node("y", r"$y_i$", 1, 1.4, scale=2, observed=True))
-        pgm.add_plate(daft.Plate([0.5, 0.7, 1, 1.3], label=r"$i \in 1:N$", 
+        pgm.add_node(daft.Node("lambda", r"$\lambda_i$", 1.4, 1.2, scale=2))
+
+        pgm.add_node(daft.Node("x", r"$x_i$", 1.9, 1.7, scale=2, observed=True))
+
+        pgm.add_node(daft.Node("y", r"$y_i$", 1, 0.5, scale=2, observed=True))
+        
+        pgm.add_plate(daft.Plate([0.5, 0.2, 1.8, 1.8], label=r"$i \in 1:N$", 
                                 shift=-0.1))
 
         pgm.add_edge("alpha_0", "alpha")
         pgm.add_edge("kappa_0", "alpha")
 
-        pgm.add_edge("sigma_0", "lambda")
-        pgm.add_edge("mu_0", "lambda")
-        
+        pgm.add_edge("sigma_0", "beta")
+        pgm.add_edge("mu_0", "beta")
+
+        pgm.add_edge("beta", "lambda")
+        pgm.add_edge("x", "lambda")
+
         pgm.add_edge("lambda", "y")
+
         pgm.add_edge("alpha", "y")
 
 
