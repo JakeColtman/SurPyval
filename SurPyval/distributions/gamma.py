@@ -1,4 +1,7 @@
 from numpy.random import gamma
+import seaborn as sns
+from matplotlib import pyplot as plt
+
 from SurPyval.core.sampling import NumpySampler
 
 class Gamma(NumpySampler):
@@ -9,6 +12,12 @@ class Gamma(NumpySampler):
 
     def sample(self, n_samples):
         return self.sampler.sample(n_samples)
+
+    def plot(self, n_samples = 10000):
+        samples = self.sample(n_samples)
+        sns.distplot(samples)
+        plt.show()
+        
 
 def gamma_from_mean_variance(mean, variance):
     llambda = mean / variance
