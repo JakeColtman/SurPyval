@@ -126,6 +126,7 @@ class FittedWeibull:
     def log_likihood_flat(self, parameters):
         return self.log_likihood(**self.unflatten_parameters(parameters))
 
+    @staticmethod
     def show_plate():
         import matplotlib.pyplot as plt
         from matplotlib import rc
