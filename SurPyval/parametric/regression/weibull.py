@@ -55,8 +55,8 @@ class FittedWeibull:
 
     def __init__(self, prior_dict, y, event, x):
         self.constants = {
-                "mu_0": prior_dict["llambda"].mu, 
-                "var_0": prior_dict["llambda"].covar,
+                "mu_0": prior_dict["beta"].mu, 
+                "var_0": prior_dict["beta"].covar,
                 "alpha_0": prior_dict["alpha"].alpha,
                 "kappa_0": prior_dict["alpha"].llambda
                 }
@@ -71,7 +71,7 @@ class FittedWeibull:
         self.nodes = {
             "beta": DistributionNode("beta", prior_dict["beta"], None),
             "alpha": DistributionNode("alpha", prior_dict["alpha"], None),
-            "y": DistributionNode("y", PriorPredictiveDistribution(prior_dict["alpha"], prior_dict["beta"]), None)
+            "y": DistributionNode("y", PredictiveDistribution(prior_dict["alpha"], prior_dict["beta"]), None)
         }
 
     def fit(self, n_walkers = 4, burn = 500):
@@ -85,9 +85,9 @@ class FittedWeibull:
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         sampler = EmceeSampler(sampler, pos)
-        self.nodes["llambda"].posterior = Sampler.apply_to_sampler(lambda x: x[:,1], sampler)
+        self.nodes["beta"].posterior = Sampler.apply_to_sampler(lambda x: x[:,1], sampler)
         self.nodes["alpha"].posterior = Sampler.apply_to_sampler(lambda x: x[:,0], sampler)
-        self.nodes["y"].posterior = PriorPredictiveDistribution(self.nodes["alpha"].posterior, self.nodes["llambda"].posterior)
+        self.nodes["y"].posterior = PredictiveDistribution(self.nodes["alpha"].posterior, self.nodes["beta"].posterior)
         return self      
 
     def maximum_likihood(self):
@@ -96,10 +96,10 @@ class FittedWeibull:
         max_lik_point = result["x"]
         return max_lik_point
 
-    def log_likihood(self, alpha, llambda):
+    def log_likihood(self, alpha, beta):
         
-        def log_llambda_prior():
-            resid = (llambda - self.constants["mu_0"])
+        def log_beta_prior():
+            resid = (beta - self.constants["mu_0"])
             numerator = - np.dot(resid.T, np.dot(np.linalg.inv(self.constants["var_0"]), resid))
             denom = np.log(np.power(2.0 * np.pi, len(beta)) * np.linalg.det(self.constants["var_0"]))
             return numerator - denom
@@ -109,11 +109,12 @@ class FittedWeibull:
             return np.log(scipy.stats.gamma.pdf(alpha, self.constants["alpha_0"], scale = self.constants["kappa_0"])) 
 
         def log_lik():
-            if alpha <= 0 or llambda <= 0:
+            if alpha <= 0:
                 return - np.inf
+            llambda = np.dot(self.data["x"].T, beta)
             return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
 
-        return log_lik() + log_alpha_prior() + log_llambda_prior()
+        return log_lik() + log_alpha_prior() + log_beta_prior()
 
     def flatten_parameters(self, alpha, llambda):
         return np.array([alpha, llambda])
