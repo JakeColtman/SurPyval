@@ -38,20 +38,16 @@ class PriorPredictiveDistribution(NumpySampler):
 
 class FittedWeibull:
     """
-        Fit an exponential regression to the lifetime data with coefficients
+        Fit an weibull regression to the lifetime data with covariates
 
-        The linear predictor is currently transofrmed through exp(.) following XXX
+        Covariates enter the likihood through the scale paramter of the Weibull distribution
+        i.e. all covaraites have the same shape, but can have varying scales
 
-        Nodes:
-            * llambda - the main parameter for the expoential distribution
-            * y - predictive distribution for lifetime
-
-        Likihood: 
-            $$L(\lambda | D) = \prod f(y_i | \lambda)^{v_i} S(y_i | \lambda)^{1 - v_i}$$
-            $$L(\lambda | D) = \lambda^{d} e^{-\lambda n \bar{y}}$$
-    
         Prior:
-            There isn't a (reasonable) conjugate prior for \beta, so a Gaussian prior is used
+            There isn't a conjugate prior for all the unknowns so we assume:
+                * Gamma prior on alpha (shape parameter)
+                * Normal prior on beta (coefficients)
+            
             This means that fitting the model requires some numerical approximation, currently MCMC
     """
 
