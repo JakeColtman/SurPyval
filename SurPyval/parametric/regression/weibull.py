@@ -1,6 +1,7 @@
 
 import seaborn as sns
 import emcee as em
+import numpy as np
 from scipy.optimize import minimize
 
 from SurPyval.core.sampling import Sampler
@@ -27,17 +28,18 @@ class PredictiveDistribution(NumpySampler):
         self.beta_dist = beta_dist
 
     def sample(self, x, n_samples):
+        from scipy.stats import weibull_min
         alpha_samples = self.alpha_dist.sample(n_samples)
         beta_samples = self.beta_dist.sample(n_samples)
-        llambda_samples = map(lambda sample: np.dot(x.T, beta_samples))
+        llambda_samples = np.dot(x, beta_samples.T)
         samples = zip(alpha_samples, llambda_samples)
-        prior_predictive_samples = np.array(map(lambda x: np.random.weibull(x[0], 1.0 / np.log(x)), samples))
+        prior_predictive_samples = np.array(map(lambda x: weibull_min.rvs(x[0], scale = 1.0 / np.exp(x[1]), size=1), samples))
         return prior_predictive_samples
 
     def plot(self, x, n_samples = 10000):
         sns.distplot(self.sample(x, n_samples))
 
-class FittedWeibull:
+class WeibullRegression:
     """
         Fit an weibull regression to the lifetime data with covariates
 
