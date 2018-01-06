@@ -87,7 +87,7 @@ class WeibullRegression:
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         sampler = EmceeSampler(sampler, pos)
-        self.nodes["beta"].posterior = Sampler.apply_to_sampler(lambda x: x[:,1], sampler)
+        self.nodes["beta"].posterior = Sampler.apply_to_sampler(lambda x: x[:,1:], sampler)
         self.nodes["alpha"].posterior = Sampler.apply_to_sampler(lambda x: x[:,0], sampler)
         self.nodes["y"].posterior = PredictiveDistribution(self.nodes["alpha"].posterior, self.nodes["beta"].posterior)
         return self      
@@ -114,7 +114,9 @@ class WeibullRegression:
         def log_lik():
             if alpha <= 0:
                 return - np.inf
-            llambda = np.dot(self.data["x"].T, beta)
+            llambda = np.dot(self.data["x"], beta)
+            if np.min(llambda) <= 0:
+                return -np.inf
             return self.data["d"] * np.log(alpha) + np.dot(self.data["event"].T, llambda) + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.dot(np.exp(llambda).T,self.data["y"] ** alpha)
 
         return log_lik() + log_alpha_prior() + log_beta_prior()
@@ -127,6 +129,9 @@ class WeibullRegression:
 
     def log_likihood_flat(self, parameters):
         return self.log_likihood(**self.unflatten_parameters(parameters))
+
+    def generate_replicate(self):
+        
 
     @staticmethod
     def show_plate():

@@ -1,5 +1,3 @@
-import numpy as np
-
 class Sampler:
     
     def __init__(self, sample_function):
@@ -31,26 +29,6 @@ class Sampler:
     @staticmethod
     def apply_to_sampler(f, x):
         return Sampler(lambda n_samples: f(x.sample(n_samples)))
-
-class NumpySampler(Sampler):
-    
-    def __init__(self, np_random, **kwargs):
-        self.np_random = np_random
-        self.kwargs = kwargs
-        
-    def sample(self, n_samples):
-        return self.np_random(size = n_samples, **self.kwargs).reshape(n_samples, 1)  
-
-class EmceeSampler(Sampler):
-
-    def __init__(self, sampler, pos):
-        self.sampler = sampler
-        self.pos = pos
-
-    def sample(self, n_samples):
-        self.sampler.reset()
-        self.sampler.run_mcmc(self.pos, n_samples)
-        return self.sampler.flatchain
 
 def dot(x, y):
     return Sampler.combine_samplers(np.dot, x, y)

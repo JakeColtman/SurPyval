@@ -1,25 +1,21 @@
 from numpy.random import gamma
 import seaborn as sns
+import numpy as np
+
 from matplotlib import pyplot as plt
 
 from SurPyval.core.sampling import NumpySampler
+from SurPyval.distributions.distribution import Distribution
 
-class Gamma(NumpySampler):
+class Gamma(Distribution):
     
     def __init__(self, alpha, llambda):
         self.alpha, self.llambda = alpha, llambda
         self.sampler = NumpySampler(gamma, shape = alpha, scale = 1./ llambda)
 
-    def sample(self, n_samples):
-        return self.sampler.sample(n_samples)
+    def pdf(self, x):
+        from scipy.stats import gamma
+        return gamma.pdf(x, shape = self.alpha, scale = 1./self.llambda)
 
-    def plot(self, n_samples = 10000):
-        samples = self.sample(n_samples)
-        sns.distplot(samples)
-        plt.show()
-        
-
-def gamma_from_mean_variance(mean, variance):
-    llambda = mean / variance
-    alpha = llambda * mean
-    return Gamma(alpha, llambda)
+    def log_lik(self, x):
+        return np.log(self.pdf(x))

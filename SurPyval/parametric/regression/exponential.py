@@ -5,40 +5,37 @@ from scipy.optimize import minimize
 import emcee as em
 
 from SurPyval.core.sampling import EmceeSampler
-from SurPyval.distributions.gamma import Gamma
 from SurPyval.core.sampling import NumpySampler
+from SurPyval.node.node import Node
+from SurPyval.distributions.distribution import Distribution
 
-class DistributionNode:
+
+class DataLikihoodDistribution(Distribution):
     
-    def __init__(self, name, prior_distribution, posterior_distribution):
-        self.name = name
-        self.prior = prior_distribution
-        self.posterior = posterior_distribution
+    def __init__(self, y, event, x):
+        self.y = y
+        self.event = event
+        self.x = x
 
-    def sample_prior(self, n_samples = 10000):
-        return self.prior.sample(n_samples)
+    def log_lik(self, beta):
+        return np.dot(self.event.T, np.dot(self.x, beta)) - np.dot(self.y.T , np.exp(np.dot(self.x, beta)))
 
-    def sample_posterior(self, n_samples = 10000):
-        return self.posterior.sample(n_samples)
-
-class PriorPredictiveDistribution(NumpySampler):
+class LikihoodNode(Node):
     
-    def __init__(self, gaussian_distribution):
-        self.distr = gaussian_distribution
+    def __init__(self, y, event, x, variable_names = ["beta"]):
+        self.variable_names = variable_names
+        self.distribution = DataLikihoodDistribution(y, event, x)
 
     def sample(self, x, n_samples):
-        samples = np.exp(np.dot(x.T, self.distr.sample(n_samples).T))
+        samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))
         prior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
         return prior_predictive_samples
-
-    def plot(self, n_samples = 10000):
-        sns.distplot(self.sample(n_samples))
 
 class ExponentialRegression:
     """
         Fit an exponential regression to the lifetime data with coefficients
 
-        The linear predictor is currently transofrmed through exp(.) following XXX
+        The linear predictor is currently transformed through exp(.) following XXX
 
         Nodes:
             * llambda - the main parameter for the expoential distribution
@@ -55,18 +52,14 @@ class ExponentialRegression:
 
 
     def __init__(self, prior_dict, y, event, x):
-        self.constants = {"mu_0": prior_dict["beta"].mu, "var_0": prior_dict["beta"].covar}
-        self.data = {
-            "y": y,
-            "x": x,
-            "event": event,
-            "d": np.sum(event),
-            "y_sum": np.sum(y)
-        }
+
+        self.data = {"x": x, "event": event}
         self.nodes = {
-            "beta": DistributionNode("beta", prior_dict["beta"], None),
-            "y": DistributionNode("y", PriorPredictiveDistribution(prior_dict["beta"]), None)
+            "beta": prior_dict["beta"],
+            "y": LikihoodNode(y, event, x, ["beta"])
         }
+
+        self.posterior = None
 
     def fit(self, n_walkers = 4, burn = 500):
 
@@ -79,8 +72,7 @@ class ExponentialRegression:
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         
-        self.nodes["beta"].posterior = EmceeSampler(sampler, pos)
-        self.nodes["y"].posterior = PriorPredictiveDistribution(self.nodes["beta"].posterior)
+        self.posterior = EmceeSampler(sampler, pos)
         return self      
 
     def maximum_likihood(self):
@@ -90,16 +82,16 @@ class ExponentialRegression:
         return max_lik_point
     
     def log_likihood(self, beta):
-        def log_prior():
-            resid = (beta - self.constants["mu_0"])
-            numerator = - np.dot(resid.T, np.dot(np.linalg.inv(self.constants["var_0"]), resid))
-            denom = np.log(np.power(2.0 * np.pi, len(beta)) * np.linalg.det(self.constants["var_0"]))
-            return numerator - denom
+        return np.sum([x.log_lik(beta = beta) for x in self.nodes.values()])
 
-        def log_lik():
-            return np.dot(self.data["event"].T, np.dot(self.data["x"], beta)) - np.dot(self.data["y"].T , np.exp(np.dot(self.data["x"], beta)))
+    def flatten_parameters(self, beta):
+        return beta
 
-        return log_lik() + log_prior()
+    def unflatten_parameters(self, flat_array):
+        return {"beta": flat_array}
+
+    def log_likihood_flat(self, parameters):
+        return self.log_likihood(**self.unflatten_parameters(parameters))
 
     @staticmethod
     def show_plate():
