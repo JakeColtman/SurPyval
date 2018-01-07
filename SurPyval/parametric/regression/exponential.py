@@ -7,7 +7,7 @@ from SurPyval.parameter.parameter import Parameter
 from SurPyval.distributions.datalikihood import DataLikihood
 
 def likihood_distr(y, x, beta):
-    return np.sum(len(y) * np.dot(x, beta)) - np.dot(y.T , np.exp(np.dot(x, beta)))
+    return np.sum(np.dot(x, beta)) - np.dot(y.T , np.exp(np.dot(x, beta)))
 
 def survival_distr(y, x, beta):
     return - np.dot(y.T , np.exp(np.dot(x, beta)))
