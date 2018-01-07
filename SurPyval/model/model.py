@@ -2,6 +2,8 @@ from scipy.optimize import minimize
 import emcee as em
 import numpy as np
 
+from SurPyval.samplers.emceesampler import EmceeSampler
+
 class Model(object):
 
     def __init__(self, node_tree):

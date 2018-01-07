@@ -1,3 +1,5 @@
+import numpy as np
+
 from SurPyval.node.node import Node
 from SurPyval.node.tree import NodeTree
 from SurPyval.model.model import Model
@@ -5,7 +7,7 @@ from SurPyval.parameter.parameter import Parameter
 from SurPyval.distributions.datalikihood import DataLikihood
 
 def likihood_distr(y, x, beta):
-    return len(y) * np.dot(x, beta) - np.dot(y.T , np.exp(np.dot(x, beta)))
+    return np.sum(len(y) * np.dot(x, beta)) - np.dot(y.T , np.exp(np.dot(x, beta)))
 
 def survival_distr(y, x, beta):
     return - np.dot(y.T , np.exp(np.dot(x, beta)))
@@ -24,8 +26,9 @@ def survival_distr(y, x, beta):
 
 class LikihoodNode(Node):
     
-    def __init__(self, y, event, x, parameter_names = ["beta"]):
-        self.parameter_names = parameter_names
+    def __init__(self, y, event, x, parameter_dict = {"beta": "beta"}):
+        self.parameter_names = parameter_dict.values()
+        self.parameter_dict = parameter_dict
         self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
 
     def sample(self, x, n_samples):
@@ -58,7 +61,7 @@ class ExponentialRegression(Model):
         self.parameters = [Parameter("beta", 1.0)]
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y": LikihoodNode(y, event, x, ["beta"])
+            "y": LikihoodNode(y, event, x, {"beta": "beta"})
         }
         self.node_tree = NodeTree(self.node_dict, self.parameters)
 

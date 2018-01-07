@@ -13,8 +13,8 @@ class DataLikihood(Distribution):
         self.survival_dist = survival_dist
 
     def log_lik(self, **kwargs):
-        likihood_contribution = np.dot(self.event.T, self.likihood_dist(self.y, self. x, **kwargs))
-        survival_contribution = np.dot(self.censored.T, self.survival_dist(self.y, self.x, **kwargs))
+        likihood_contribution = self.likihood_dist(self.y[self.event.astype(bool)], self.x[self.event.astype(bool)], **kwargs)
+        survival_contribution = self.survival_dist(self.y[self.censored.astype(bool)], self.x[self.censored.astype(bool)], **kwargs)
         return likihood_contribution + survival_contribution
 
     def pdf(self, **kwargs):
