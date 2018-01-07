@@ -13,7 +13,7 @@ class Model(object):
 
         def generate_starting_points():
             max_lik_point = self.maximum_likihood()
-            return [max_lik_point + np.random.normal(0, 0.01, self.node_tree.length()) for x in range(n_walkers)]
+            return [max_lik_point + np.random.normal(0, 0.01, int(self.node_tree.length())) for x in range(n_walkers)]
         
         ndim = self.node_tree.length()
         sampler = em.EnsembleSampler(n_walkers, ndim, self.node_tree.log_lik)
