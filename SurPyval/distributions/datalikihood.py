@@ -1,3 +1,5 @@
+import numpy as np
+
 from SurPyval.distributions.distribution import Distribution
 
 class DataLikihood(Distribution):

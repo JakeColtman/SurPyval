@@ -13,12 +13,12 @@ class Node:
         return self.sampler.sample(n_samples)
 
     def log_lik(self, **kwargs):
-        args = [kwargs[x] for x in self.parameter_names]
-        return self.distribution.log_lik(*args)
+        kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
+        return self.distribution.log_lik(**kwargs)
     
     def pdf(self, **kwargs):
-        args = [kwargs[x] for x in self.parameter_names]
-        return self.distribution.pdf(*args)
+        kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
+        return self.distribution.pdf(**kwargs)
 
 def gaussian(mu, covar, variable_names):
     distr = Gaussian(mu, covar)

@@ -24,9 +24,9 @@ def survival_distr(y, x, beta):
 
 class LikihoodNode(Node):
     
-    def __init__(self, y, event, x, variable_names = ["beta"]):
-        self.variable_names = variable_names
-        self.distribution = DataLikihood(likihood_distr, survival_disrt, y, event, x)
+    def __init__(self, y, event, x, parameter_names = ["beta"]):
+        self.parameter_names = parameter_names
+        self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
 
     def sample(self, x, n_samples):
         samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))

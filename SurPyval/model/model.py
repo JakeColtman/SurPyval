@@ -1,6 +1,8 @@
+from scipy.optimize import minimize
+import emcee as em
+import numpy as np
 
-
-class Model:
+class Model(object):
 
     def __init__(self, node_tree):
         self.node_tree = node_tree
