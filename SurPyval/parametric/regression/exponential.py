@@ -12,18 +12,6 @@ def likihood_distr(y, x, beta):
 def survival_distr(y, x, beta):
     return - np.dot(y.T , np.exp(np.dot(x, beta)))
 
-# ExponentialRegressionDataLikihood = Data
-
-# class DataLikihoodDistribution(Distribution):
-    
-#     def __init__(self, y, event, x):
-#         self.y = y
-#         self.event = event
-#         self.x = x
-
-#     def log_lik(self, beta):
-#         return np.dot(self.event.T, np.dot(self.x, beta)) - np.dot(self.y.T , np.exp(np.dot(self.x, beta)))
-
 class LikihoodNode(Node):
     
     def __init__(self, y, event, x, parameter_dict = {"beta": "beta"}):
@@ -67,6 +55,11 @@ class ExponentialRegression(Model):
 
     @staticmethod
     def show_plate():
+
+        import matplotlib.pyplot as plt
+        from matplotlib import rc
+        import daft
+
         plt.rcParams['figure.figsize'] = 14, 8
         rc("font", family="serif", size=12)
         rc("text", usetex=False)
