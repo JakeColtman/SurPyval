@@ -1,7 +1,7 @@
 from numpy.random import exponential
 import numpy as np
 
-from SurPyval.core.sampling import NumpySampler
+from SurPyval.samplers.npsampler import NumpySampler
 from SurPyval.distributions.distribution import Distribution
 
 class Exponential(Distribution):
@@ -12,7 +12,7 @@ class Exponential(Distribution):
 
     def pdf(self, x):
         from scipy.stats import exponential
-        if x <= 0
+        if x <= 0:
             return - np.inf
         return exponential.pdf(x, shape = self.alpha)
 

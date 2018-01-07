@@ -1,10 +1,7 @@
 from numpy.random import gamma
-import seaborn as sns
 import numpy as np
 
-from matplotlib import pyplot as plt
-
-from SurPyval.core.sampling import NumpySampler
+from SurPyval.samplers.npsampler import NumpySampler
 from SurPyval.distributions.distribution import Distribution
 
 class Gamma(Distribution):

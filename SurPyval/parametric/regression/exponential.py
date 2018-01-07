@@ -1,37 +1,39 @@
-
-import seaborn as sns
-import emcee as em
-from scipy.optimize import minimize
-import emcee as em
-
-from SurPyval.core.sampling import EmceeSampler
-from SurPyval.core.sampling import NumpySampler
 from SurPyval.node.node import Node
-from SurPyval.distributions.distribution import Distribution
+from SurPyval.node.tree import NodeTree
+from SurPyval.model.model import Model
+from SurPyval.parameter.parameter import Parameter
+from SurPyval.distributions.datalikihood import DataLikihood
 
+def likihood_distr(y, x, beta):
+    return len(y) * np.dot(x, beta) - np.dot(y.T , np.exp(np.dot(x, beta)))
 
-class DataLikihoodDistribution(Distribution):
+def survival_distr(y, x, beta):
+    return - np.dot(y.T , np.exp(np.dot(x, beta)))
+
+# ExponentialRegressionDataLikihood = Data
+
+# class DataLikihoodDistribution(Distribution):
     
-    def __init__(self, y, event, x):
-        self.y = y
-        self.event = event
-        self.x = x
+#     def __init__(self, y, event, x):
+#         self.y = y
+#         self.event = event
+#         self.x = x
 
-    def log_lik(self, beta):
-        return np.dot(self.event.T, np.dot(self.x, beta)) - np.dot(self.y.T , np.exp(np.dot(self.x, beta)))
+#     def log_lik(self, beta):
+#         return np.dot(self.event.T, np.dot(self.x, beta)) - np.dot(self.y.T , np.exp(np.dot(self.x, beta)))
 
 class LikihoodNode(Node):
     
     def __init__(self, y, event, x, variable_names = ["beta"]):
         self.variable_names = variable_names
-        self.distribution = DataLikihoodDistribution(y, event, x)
+        self.distribution = DataLikihood(likihood_distr, survival_disrt, y, event, x)
 
     def sample(self, x, n_samples):
         samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))
         prior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
         return prior_predictive_samples
 
-class ExponentialRegression:
+class ExponentialRegression(Model):
     """
         Fit an exponential regression to the lifetime data with coefficients
 
@@ -53,45 +55,12 @@ class ExponentialRegression:
 
     def __init__(self, prior_dict, y, event, x):
 
-        self.data = {"x": x, "event": event}
-        self.nodes = {
+        self.parameters = [Parameter("beta", 1.0)]
+        self.node_dict = {
             "beta": prior_dict["beta"],
             "y": LikihoodNode(y, event, x, ["beta"])
         }
-
-        self.posterior = None
-
-    def fit(self, n_walkers = 4, burn = 500):
-
-        def generate_starting_points():
-            max_lik_point = self.maximum_likihood()
-            return [max_lik_point + np.random.normal(0, 0.01, self.data["x"].shape[1]) for x in range(n_walkers)]
-        
-        ndim = self.data["x"].shape[1]
-        sampler = em.EnsembleSampler(n_walkers, ndim, self.log_likihood)
-        p0 = generate_starting_points()
-        pos, prob, state = sampler.run_mcmc(p0, burn)
-        
-        self.posterior = EmceeSampler(sampler, pos)
-        return self      
-
-    def maximum_likihood(self):
-        neg_lok_lik = lambda *args: -self.log_likihood(*args)
-        result = minimize(neg_lok_lik, [1] * self.data["x"].shape[1])
-        max_lik_point = result["x"]
-        return max_lik_point
-    
-    def log_likihood(self, beta):
-        return np.sum([x.log_lik(beta = beta) for x in self.nodes.values()])
-
-    def flatten_parameters(self, beta):
-        return beta
-
-    def unflatten_parameters(self, flat_array):
-        return {"beta": flat_array}
-
-    def log_likihood_flat(self, parameters):
-        return self.log_likihood(**self.unflatten_parameters(parameters))
+        self.node_tree = NodeTree(self.node_dict, self.parameters)
 
     @staticmethod
     def show_plate():

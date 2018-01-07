@@ -4,16 +4,20 @@ from SurPyval.distributions.gamma import Gamma
 
 class Node:
 
-    def __init__(self, distribution, sampler, variable_names):
+    def __init__(self, distribution, sampler, parameter_names):
         self.distribution = distribution
         self.sampler = sampler
-        self.variable_names = variable_names
+        self.parameter_names = parameter_names
 
     def sample(self, n_samples):
         return self.sampler.sample(n_samples)
 
+    def log_lik(self, **kwargs):
+        args = [kwargs[x] for x in self.parameter_names]
+        return self.distribution.log_lik(*args)
+    
     def pdf(self, **kwargs):
-        args = [kwargs[x] for x in self.variable_names]
+        args = [kwargs[x] for x in self.parameter_names]
         return self.distribution.pdf(*args)
 
 def gaussian(mu, covar, variable_names):
