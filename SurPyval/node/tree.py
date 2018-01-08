@@ -6,7 +6,7 @@ class Transformation(object):
         self.f = f
         self.new_name = new_name
 
-    def transform(self, data_dict, dict):
+    def transform(self, data_dict, parameter_dict):
         return {self.new_name: self.f(data_dict, parameter_dict)}
 
 
@@ -14,7 +14,7 @@ class NodeTree:
 
     def __init__(self, node_dict, data_dict, parameters, transformations):
         self.parameters = parameters
-        self.data = data
+        self.data_dict = data_dict
         self.transformations = transformations
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
@@ -22,7 +22,7 @@ class NodeTree:
 
     def append_transformations(self, parameter_dict):
         parameter_dicts_from_transformations = [
-            x.transform(self.data, parameter_dict) for x in self.transformations
+            x.transform(self.data_dict, parameter_dict) for x in self.transformations
         ]
         for parameter_dict_from_transformations in parameter_dicts_from_transformations:
             parameter_dict.update(parameter_dict_from_transformations)

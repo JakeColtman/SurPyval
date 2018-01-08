@@ -63,7 +63,7 @@ class ExponentialRegression(Model):
         
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y": LikihoodNode(y, event, x, {"alpha": "alpha"})
+            "y": LikihoodNode(y, event, x, {"alpha_event": "alpha_event", "alpha_censored": "alpha_censored"})
         }
         self.node_tree = NodeTree(self.node_dict, 
                                   self.data_dict, 
