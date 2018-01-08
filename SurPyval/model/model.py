@@ -8,7 +8,18 @@ class Model(object):
 
     def __init__(self, node_tree):
         self.node_tree = node_tree
-
+    
+    def sample_posterior(self, n_samples, store = True, append = True):
+        new_samples = self.posterior.sample(n_samples)
+        if store:
+            if append: 
+                try:
+                    self.posterior_samples.append(new_samples)
+                except:
+                    self.posterior_samples = [new_samples]
+            else:
+                self.posterior_samples = [new_samples]
+                
     def fit(self, n_walkers = 4, burn = 500):
 
         def generate_starting_points():

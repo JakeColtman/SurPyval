@@ -11,12 +11,12 @@ class NodeTree:
     def log_lik(self, flattened_parameters):
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
         return np.sum(map(lambda x: x.log_lik(**unflattened_parameters), self.node_dict.values()))
-        
+
     def add_node(self, node_name, node):
         new_dict = self.node_dict
         new_dict[node_name] = node
         return NodeTree(new_dict, self.parameters)
-        
+
     def flattened_parameter_split_points(self):
         split_points = [0]
         for parameter in self.parameters:
