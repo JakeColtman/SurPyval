@@ -1,42 +1,34 @@
+import numpy as np
 
-import seaborn as sns
-import emcee as em
-from scipy.optimize import minimize
+from SurPyval.samplers.emceesampler import EmceeSampler
+from SurPyval.samplers.npsampler import NumpySampler
+from SurPyval.parameter.parameter import Parameter
+from SurPyval.node.tree import NodeTree
+from SurPyval.model.model import Model
 
-from SurPyval.core.sampling import Sampler
-from SurPyval.distributions.gamma import Gamma
-from SurPyval.core.sampling import NumpySampler
+def likihood_distr(y, x, alpha, llambda):
+    if alpha <= 0 or llambda <= 0:
+        return - np.inf
+    return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
 
-class DistributionNode:
+def survival_distr(y, x, alpha, llambda):
+    if alpha <= 0 or llambda <= 0:
+        return - np.inf
+    return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
+
+class LikihoodNode(Node):
     
-    def __init__(self, name, prior_distribution, posterior_distribution):
-        self.name = name
-        self.prior = prior_distribution
-        self.posterior = posterior_distribution
+    def __init__(self, y, event, x, parameter_dict = {"alpha": "alpha", "llambda": "llambda"}):
+        self.parameter_names = parameter_dict.values()
+        self.parameter_dict = parameter_dict
+        self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
 
-    def sample_prior(self, n_samples = 10000):
-        return self.prior.sample(n_samples)
-
-    def sample_posterior(self, n_samples = 10000):
-        return self.posterior.sample(n_samples)
-
-class PriorPredictiveDistribution(NumpySampler):
-    
-    def __init__(self, alpha_dist, llambda_dist):
-        self.alpha_dist = alpha_dist
-        self.llambda_dist = llambda_dist
-
-    def sample(self, n_samples):
-        alpha_samples = self.alpha_dist.sample(n_samples)
-        llambda_samples = self.llambda_dist.sample(n_samples)
-        samples = zip(alpha_samples, llambda_samples)
-        prior_predictive_samples = np.array(map(lambda x: np.random.weibull(x[0], 1.0 / np.log(x)), samples))
+    def sample(self, x, n_samples):
+        samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))
+        prior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
         return prior_predictive_samples
 
-    def plot(self, n_samples = 10000):
-        sns.distplot(self.sample(n_samples))
-
-class FittedWeibull:
+class FittedWeibull(Model):
     """
         Fit an exponential regression to the lifetime data with coefficients
 
@@ -57,74 +49,15 @@ class FittedWeibull:
 
 
     def __init__(self, prior_dict, y, event):
-        self.constants = {
-                "mu_0": prior_dict["llambda"].mu, 
-                "var_0": prior_dict["llambda"].covar,
-                "alpha_0": prior_dict["alpha"].alpha,
-                "kappa_0": prior_dict["alpha"].llambda
-                }
 
-        self.data = {
-            "y": y,
-            "event": event,
-            "d": np.sum(event),
-            "y_sum": np.sum(y)
+        self.parameters = [Parameter("alpha", 1), Parameter("llambda", 1)]
+
+        self.node_dict = {
+            "alpha": prior_dict["alpha"],
+            "llambda": prior_dict["llambda"],
+            "y": LikihoodNode(y, event, x)
         }
-        self.nodes = {
-            "llambda": DistributionNode("llambda", prior_dict["llambda"], None),
-            "alpha": DistributionNode("alpha", prior_dict["alpha"], None),
-            "y": DistributionNode("y", PriorPredictiveDistribution(prior_dict["alpha"], prior_dict["llambda"]), None)
-        }
-
-    def fit(self, n_walkers = 4, burn = 500):
-    
-        def generate_starting_points():
-            max_lik_point = self.maximum_likihood()
-            return [max_lik_point + np.random.normal(0, 0.01, 2) for x in range(n_walkers)]
-        
-        ndim = 2
-        sampler = em.EnsembleSampler(n_walkers, ndim, self.log_likihood_flat)
-        p0 = generate_starting_points()
-        pos, prob, state = sampler.run_mcmc(p0, burn)
-        sampler = EmceeSampler(sampler, pos)
-        self.nodes["llambda"].posterior = Sampler.apply_to_sampler(lambda x: x[:,1], sampler)
-        self.nodes["alpha"].posterior = Sampler.apply_to_sampler(lambda x: x[:,0], sampler)
-        self.nodes["y"].posterior = PriorPredictiveDistribution(self.nodes["alpha"].posterior, self.nodes["llambda"].posterior)
-        return self      
-
-    def maximum_likihood(self):
-        neg_log_lik = lambda *args: -self.log_likihood_flat(*args)
-        result = minimize(neg_log_lik, [1, 1])
-        max_lik_point = result["x"]
-        return max_lik_point
-
-    def log_likihood(self, alpha, llambda):
-        
-        def log_llambda_prior():
-            resid = (llambda - self.constants["mu_0"])
-            numerator = - np.dot(resid.T, np.dot(np.linalg.inv(self.constants["var_0"]), resid))
-            denom = np.log(np.power(2.0 * np.pi, len(beta)) * np.linalg.det(self.constants["var_0"]))
-            return numerator - denom
-
-        def log_alpha_prior():
-            import scipy.stats
-            return np.log(scipy.stats.gamma.pdf(alpha, self.constants["alpha_0"], scale = self.constants["kappa_0"])) 
-
-        def log_lik():
-            if alpha <= 0 or llambda <= 0:
-                return - np.inf
-            return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
-
-        return log_lik() + log_alpha_prior() + log_llambda_prior()
-
-    def flatten_parameters(self, alpha, llambda):
-        return np.array([alpha, llambda])
-
-    def unflatten_parameters(self, parameters):
-        return {"alpha": parameters[0], "llambda": parameters[1]}
-
-    def log_likihood_flat(self, parameters):
-        return self.log_likihood(**self.unflatten_parameters(parameters))
+        self.node_tree = NodeTree(self.node_dict, self.parameters)
 
     @staticmethod
     def show_plate():
