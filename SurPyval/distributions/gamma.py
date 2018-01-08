@@ -13,7 +13,7 @@ class Gamma(Distribution):
 
     def pdf(self, x):
         from scipy.stats import gamma
-        return gamma.pdf(x, shape = self.alpha, scale = 1./self.llambda)
+        return gamma.pdf(x, self.alpha, scale = 1./self.llambda)
 
     def log_lik(self, x):
         return np.log(self.pdf(x))   

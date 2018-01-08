@@ -1,3 +1,4 @@
+from SurPyval.distributions.distribution import Distribution
 
 class InvertedDistribution(Distribution):
 
@@ -7,3 +8,6 @@ class InvertedDistribution(Distribution):
 
     def log_lik(self, **kwargs):
         return self.distribution_class(**kwargs).log_lik(**self.distribution_kwargs) 
+
+    def pdf(self, **kwargs):
+        return self.distribution_class(**kwargs).pdf(**self.distribution_kwargs) 
