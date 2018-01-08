@@ -1,20 +1,20 @@
 import numpy as np
 
 from SurPyval.node.node import Node
-from SurPyval.node.tree import NodeTree
+from SurPyval.node.tree import NodeTree, Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
 from SurPyval.distributions.datalikihood import DataLikihood
 
-def likihood_distr(y, x, beta):
-    return np.sum(np.dot(x, beta)) - np.dot(y.T , np.exp(np.dot(x, beta)))
+def likihood_distr(y, alpha_event, alpha_censored):
+    return np.sum(np.log(alpha_event)) - np.dot(y.T , alpha_event)
 
-def survival_distr(y, x, beta):
-    return - np.dot(y.T , np.exp(np.dot(x, beta)))
+def survival_distr(y, alpha_event, alpha_censored):
+    return - np.dot(y.T , alpha_censored)
 
 class LikihoodNode(Node):
     
-    def __init__(self, y, event, x, parameter_dict = {"beta": "beta"}):
+    def __init__(self, y, event, x, parameter_dict = {"alpha_event": "alpha_event", "alpha_censored": "alpha_censored"}):
         self.parameter_names = parameter_dict.values()
         self.parameter_dict = parameter_dict
         self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
@@ -47,11 +47,28 @@ class ExponentialRegression(Model):
     def __init__(self, prior_dict, y, event, x):
 
         self.parameters = [Parameter("beta", 1.0)]
+        self.data_dict = {
+            "x": x,
+            "event": event
+        }
+
+        self.transformations = [
+            Transformation( \
+                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][data_dict["event"].astype(bool)], parameter_dict["beta"])),
+                    "alpha_event"),
+            Transformation( \
+                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][~data_dict["event"].astype(bool)], parameter_dict["beta"])),
+                    "alpha_censored")
+        ]
+        
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y": LikihoodNode(y, event, x, {"beta": "beta"})
+            "y": LikihoodNode(y, event, x, {"alpha": "alpha"})
         }
-        self.node_tree = NodeTree(self.node_dict, self.parameters)
+        self.node_tree = NodeTree(self.node_dict, 
+                                  self.data_dict, 
+                                  self.parameters, 
+                                  self.transformations)
 
     @staticmethod
     def show_plate():

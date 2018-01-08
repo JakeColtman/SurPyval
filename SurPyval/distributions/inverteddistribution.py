@@ -3,7 +3,10 @@ from SurPyval.distributions.distribution import Distribution
 class InvertedDistribution(Distribution):
 
     def __init__(self, distribution, **kwargs):
-        self.distribution_class = distribution.__class__
+        if str(type(distribution)) == "<type 'classobj'>":
+            self.distribution_class = distribution
+        else:
+            self.distribution_class = distribution.__class__
         self.distribution_kwargs = kwargs
 
     def log_lik(self, **kwargs):

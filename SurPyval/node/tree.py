@@ -1,12 +1,33 @@
 import numpy as np
 
+class Transformation(object):
+    
+    def __init__(self, f, new_name):
+        self.f = f
+        self.new_name = new_name
+
+    def transform(self, data_dict, dict):
+        return {self.new_name: self.f(data_dict, parameter_dict)}
+
+
 class NodeTree:
 
-    def __init__(self, node_dict, parameters):
+    def __init__(self, node_dict, data_dict, parameters, transformations):
         self.parameters = parameters
+        self.data = data
+        self.transformations = transformations
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()
+
+    def append_transformations(self, parameter_dict):
+        parameter_dicts_from_transformations = [
+            x.transform(self.data, parameter_dict) for x in self.transformations
+        ]
+        for parameter_dict_from_transformations in parameter_dicts_from_transformations:
+            parameter_dict.update(parameter_dict_from_transformations)
+
+        return parameter_dict
 
     def log_lik(self, flattened_parameters):
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
@@ -28,7 +49,8 @@ class NodeTree:
     
     def unflatten_parameter_array(self, flat_parameter_array):
         split_array = np.split(flat_parameter_array, self.flat_split_point)
-        return {x[0]: x[1] for x in zip([x.name for x in self.parameters], split_array)}
+        param_dict = {x[0]: x[1] for x in zip([x.name for x in self.parameters], split_array)}
+        return self.append_transformations(param_dict)
     
     def flatten_parameter_dict(self, parameter_dict):
         flat_list = []
