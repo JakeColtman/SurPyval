@@ -9,12 +9,12 @@ from SurPyval.node.node import Node
 
 
 def likihood_node(y):
-    distr = ArbitraryDistribution(lambda alpha: np.sum(np.log(alpha)) - np.dot(y.T , alpha))
+    distr = ArbitraryDistribution(lambda alpha: np.sum(np.log(alpha)) - np.dot(y.T, alpha))
     return Node(distr, None, {"alpha_event": "alpha"})
 
 
 def survival_node(y):
-    distr = ArbitraryDistribution(lambda alpha: - np.dot(y.T , alpha))
+    distr = ArbitraryDistribution(lambda alpha: - np.dot(y.T, alpha))
     return Node(distr, None, {"alpha_censored": "alpha"})
 
 

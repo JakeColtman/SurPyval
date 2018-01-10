@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/model.py" afterPath="$PROJECT_DIR$/SurPyval/model/model.py" />
       <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -131,8 +128,8 @@
       <file leaf-file-name="exponential.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1716">
-              <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+            <state relative-caret-position="-957">
+              <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -169,8 +166,8 @@
         <option value="$PROJECT_DIR$/SurPyval/model/model.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
         <option value="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
       </list>
     </option>
   </component>
@@ -560,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515570567280</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add documentation for exponential regression">
+      <created>1515571628019</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1515571628019</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -659,7 +663,8 @@
     <MESSAGE value="Doct strings" />
     <MESSAGE value="More doc string goodness" />
     <MESSAGE value="Doc string for Parameter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doc string for Parameter" />
+    <MESSAGE value="Add documentation for exponential regression" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add documentation for exponential regression" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -790,8 +795,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1716">
-          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+        <state relative-caret-position="-957">
+          <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
