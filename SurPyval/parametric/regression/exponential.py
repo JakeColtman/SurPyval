@@ -15,18 +15,6 @@ def survival_node(y):
     distr = ArbitraryDistribution(lambda alpha: - np.dot(y.T , alpha))
     return Node(distr, None, {"alpha_censored": "alpha"})
 
-class LikihoodNode(Node):
-    
-    def __init__(self, y, event, x, parameter_dict = {"alpha_event": "alpha_event", "alpha_censored": "alpha_censored"}):
-        self.parameter_names = parameter_dict.values()
-        self.parameter_dict = parameter_dict
-        self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
-
-    def sample(self, x, n_samples):
-        samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))
-        prior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
-        return prior_predictive_samples
-
 class ExponentialRegression(Model):
     """
         Fit an exponential regression to the lifetime data with coefficients
