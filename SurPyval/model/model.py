@@ -15,9 +15,6 @@ class Model(object):
             * Allow other approximations (VI?)
             * Support conjugate updating
     """
-
-    def __init__(self, node_tree):
-        self.node_tree = node_tree
     
     def sample_posterior(self, n_samples, store = True, append = True):
         new_samples = self.posterior.sample(n_samples)
