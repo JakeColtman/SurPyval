@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/SurPyval/node/transformation.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/requirements.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/model.py" afterPath="$PROJECT_DIR$/SurPyval/model/model.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/node.py" afterPath="$PROJECT_DIR$/SurPyval/node/node.py" />
       <change beforePath="$PROJECT_DIR$/SurPyval/node/tree.py" afterPath="$PROJECT_DIR$/SurPyval/node/tree.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/parameter/parameter.py" afterPath="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,16 +60,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2343">
-              <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+            <state relative-caret-position="-231">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1515570267493" expanded="true" signature="731:789" ph="..." />
-                <marker date="1515570267493" expanded="true" signature="783:789" ph="..." />
+                <marker date="1515570319323" expanded="true" signature="731:788" ph="..." />
+                <marker date="1515570319323" expanded="true" signature="783:788" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parameter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parameter/parameter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parameter/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -148,6 +165,7 @@
         <option value="$PROJECT_DIR$/SurPyval/node/node.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/transformation.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/tree.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
       </list>
     </option>
   </component>
@@ -503,7 +521,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515568760711</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="More doc string goodness">
+      <created>1515570303001</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1515570303001</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -600,7 +625,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Doct strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Doct strings" />
+    <MESSAGE value="More doc string goodness" />
+    <option name="LAST_COMMIT_MESSAGE" value="More doc string goodness" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -699,13 +725,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2343">
-          <caret line="74" column="20" lean-forward="false" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
+        <state relative-caret-position="-231">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1515570267493" expanded="true" signature="731:789" ph="..." />
-            <marker date="1515570267493" expanded="true" signature="783:789" ph="..." />
+            <marker date="1515570319323" expanded="true" signature="731:788" ph="..." />
+            <marker date="1515570319323" expanded="true" signature="783:788" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parameter/parameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parameter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

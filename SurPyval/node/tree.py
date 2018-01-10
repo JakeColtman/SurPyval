@@ -19,7 +19,6 @@ class NodeTree(object):
             * data_dict: Map<data_name,data>
             * parameters: List<Parameter>
             * transformations: List<Transformation>
-
     """
 
     def __init__(self, node_dict, data_dict, parameters, transformations):
@@ -75,7 +74,7 @@ class NodeTree(object):
     def flattened_parameter_split_points(self):
         """
         Calculate the correct split points in the flat array to assign each number to the correct parameter
-        
+
         Returns
         -------
         List[Int] - length = len(self.parameters)
