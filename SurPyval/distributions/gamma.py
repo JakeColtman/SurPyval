@@ -1,16 +1,19 @@
 from numpy.random import gamma
-from SurPyval.core.sampling import NumpySampler
+import numpy as np
 
-class Gamma(NumpySampler):
+from SurPyval.samplers.npsampler import NumpySampler
+from SurPyval.distributions.distribution import Distribution
+
+class Gamma(Distribution):
     
     def __init__(self, alpha, llambda):
         self.alpha, self.llambda = alpha, llambda
         self.sampler = NumpySampler(gamma, shape = alpha, scale = 1./ llambda)
+        self.parameters = {"alpha": alpha, "llambda": llambda}
 
-    def sample(self, n_samples):
-        return self.sampler.sample(n_samples)
+    def pdf(self, x):
+        from scipy.stats import gamma
+        return gamma.pdf(x, self.alpha, scale = 1./self.llambda)
 
-def gamma_from_mean_variance(mean, variance):
-    llambda = mean / variance
-    alpha = llambda * mean
-    return Gamma(alpha, llambda)
+    def log_lik(self, x):
+        return np.log(self.pdf(x))   
