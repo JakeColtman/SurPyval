@@ -1,21 +1,12 @@
 import numpy as np
+import scipy as sp
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.node.transformation import Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
-from SurPyval.distributions.arbitrary import ArbitraryDistribution
 from SurPyval.node.node import Node
-
-
-def likihood_node(y):
-    distr = ArbitraryDistribution(lambda alpha: np.sum(np.log(alpha)) - np.dot(y.T, alpha))
-    return Node(distr, None, {"alpha_event": "alpha"})
-
-
-def survival_node(y):
-    distr = ArbitraryDistribution(lambda alpha: - np.dot(y.T, alpha))
-    return Node(distr, None, {"alpha_censored": "alpha"})
+from SurPyval.distributions.datalikihood import DataLikihood
 
 
 class ExponentialRegression(Model):
@@ -42,6 +33,8 @@ class ExponentialRegression(Model):
 
         Prior:
             * beta - prior for coefficient for covariates, commonly Gaussian
+
+        $$\lambda $$
     """
 
     def __init__(self, prior_dict, y, event, x):
@@ -63,8 +56,7 @@ class ExponentialRegression(Model):
         
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y_event": likihood_node(y[event.astype(bool)]),
-            "y_censored": survival_node(y[~event.astype(bool)])
+            "y": DataLikihood(sp.stats.expon, y, event, x)
         }
 
         self.node_tree = NodeTree(self.node_dict, 
