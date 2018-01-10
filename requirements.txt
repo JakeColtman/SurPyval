@@ -1,0 +1,3 @@
+numpy
+emcee
+scipy

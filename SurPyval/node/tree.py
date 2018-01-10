@@ -3,25 +3,24 @@ from SurPyval.node.node import exponential, gaussian
 from SurPyval.parameter.parameter import Parameter
 
 
-class Transformation(object):
-    """
-        Defines a transformation from (data, parameter) -> value
-        Using transformed versions of variables simplifies down stream code
-
-        Example use case:
-
-            Transforming beta into the linear predictor in exponential regression
-    """
-
-    def __init__(self, f, new_name):
-        self.f = f
-        self.new_name = new_name
-
-    def transform(self, data_dict, parameter_dict):
-        return {self.new_name: self.f(data_dict, parameter_dict)}
-
-
 class NodeTree(object):
+    """
+        Data structure to hold together the various components of the model
+
+        There are 4 main components:
+            * node -> `Node` - a variable in the graphical model
+            * data -> {pandas | numpy} data representing covariates, censoring etc.
+            * parameters -> the unknown variable we're trying to predict
+            * transformations -> composite parameters constructed from data and parameters
+
+        args:
+
+            * node_dict : Map<node_name,Node>
+            * data_dict: Map<data_name,data>
+            * parameters: List<Parameter>
+            * transformations: List<Transformation>
+
+    """
 
     def __init__(self, node_dict, data_dict, parameters, transformations):
         self.parameters = parameters
@@ -32,6 +31,18 @@ class NodeTree(object):
         self.flat_split_point = self.flattened_parameter_split_points()
 
     def append_transformations(self, parameter_dict):
+        """
+        Enrich the parameter dictionary with transformed parameters
+        Transformed variables will be indistinguishable from original parameters
+
+        Parameters
+        ----------
+        parameter_dict: Map<parameter_name: str, value: np.array>
+
+        Returns
+        -------
+        Map<parameter_name: str, value: np.array>
+        """
         parameter_dicts_from_transformations = [
             x.transform(self.data_dict, parameter_dict) for x in self.transformations
         ]
@@ -41,6 +52,18 @@ class NodeTree(object):
         return parameter_dict
 
     def log_lik(self, flattened_parameters):
+        """
+        Access point for other classes to apply numerical methods to loglikihood
+        Allows classes to pass in a flat np.array and have the result be parsed
+
+        Parameters
+        ----------
+        flattened_parameters: np.array[float] with length self.length
+
+        Returns
+        -------
+        float
+        """
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
         return np.sum(map(lambda x: x.log_lik(**unflattened_parameters), self.node_dict.values()))
 
@@ -50,13 +73,29 @@ class NodeTree(object):
         return NodeTree(new_dict, self.data_dict, self.parameters, self.parameters)
 
     def flattened_parameter_split_points(self):
+        """
+        Calculate the correct split points in the flat array to assign each number to the correct parameter
+        
+        Returns
+        -------
+        List[Int] - length = len(self.parameters)
+        """
         split_points = [0]
         for parameter in self.parameters:
             split_points.append(split_points[-1] + parameter.length)
         return split_points[1:]
 
     def length(self):
-        return np.sum([x.length for x in self.parameters])
+        """
+        Total width of the parameter array, i.e. the number of estimated parameters
+
+        Note: this length doesn't include the deterministic transformed parameters
+
+        Returns
+        -------
+        int
+        """
+        return int(np.sum([x.length for x in self.parameters]))
     
     def unflatten_parameter_array(self, flat_parameter_array):
         split_array = np.split(flat_parameter_array, self.flat_split_point)

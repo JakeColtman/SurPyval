@@ -4,11 +4,16 @@ import numpy as np
 
 from SurPyval.samplers.emceesampler import EmceeSampler
 
+
 class Model(object):
-
     """
+        High level class that does the actual number crunching
+        Runs the MCMC approximation to the marginalization
 
-    Hello
+        Thoughts for the future:
+            * Allow non-emcee MCMC
+            * Allow other approximations (VI?)
+            * Support conjugate updating
     """
 
     def __init__(self, node_tree):
