@@ -38,11 +38,8 @@ class Model(object):
 
     """
 
-    def __init__(self, node_tree: NodeTree, data_dict: Dict[str, Any], parameters: List[Parameter], transformations: List[Transformation]):
+    def __init__(self, node_tree: NodeTree):
         self.node_tree = node_tree
-        self.data_dict = data_dict
-        self.parameters = parameters
-        self.transformations = transformations
         self.posterior: EmceeSampler = None
 
     def fit(self, n_walkers: int =4, burn: int =500):

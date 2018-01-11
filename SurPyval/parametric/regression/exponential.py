@@ -1,6 +1,6 @@
 import numpy as np
 import scipy.stats
-
+from typing import Any
 from SurPyval.node.tree import NodeTree
 from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
@@ -32,32 +32,36 @@ class ExponentialRegression(Model):
         Prior:
             * beta - prior for coefficient for covariates, commonly Gaussian
 
-        $$\lambda $$
     """
 
-    def __init__(self, prior_dict, y, event, x):
+    def __init__(self, y, event, x, beta_prior, hyparameter_dict):
 
-        self.parameters = [Parameter("beta", 1)]
-        self.data_dict = {
+        data_dict = {
+            "y": y,
             "x": x,
             "event": event
         }
+        data_dict.update(**hyparameter_dict)
 
-        self.transformations = [
+        transformations = [
             Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.sum(data_dict["x"] * parameter_dict["beta"], axis = 1)),
-                    "alpha")
+                lambda data_dict, parameter_dict: np.exp( np.sum( data_dict["x"] * parameter_dict["beta"], axis=1)),
+                "alpha" )
         ]
-        
-        self.node_dict = {
-            "beta": prior_dict["beta"],
-            "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
-        }
 
-        self.node_tree = NodeTree(self.node_dict, 
-                                  self.data_dict, 
-                                  self.parameters, 
-                                  self.transformations)
+        node_dict = {
+            "beta": beta_prior,
+            "y": DataLikihoodNode( scipy.stats.expon, {"alpha": "scale"} )
+        }
+        parameters = [
+            Parameter("beta", 1)
+        ]
+        node_tree = NodeTree(node_dict,
+                             data_dict,
+                             parameters,
+                             transformations)
+
+        Model.__init__(self, node_tree)
 
     @staticmethod
     def show_plate():

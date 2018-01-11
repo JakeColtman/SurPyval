@@ -11,12 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-.. automodule:: SurPyval
-
-.. autoclass:: SurPyval.node.node.Node
-    :members:
-
-.. autoclass:: SurPyval.node.tree.NodeTree
+.. autoclass:: SurPyval.model.model.Model
     :members:
 
 Indices and tables
