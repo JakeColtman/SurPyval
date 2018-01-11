@@ -1,21 +1,11 @@
 import numpy as np
+import scipy.stats
 
 from SurPyval.node.tree import NodeTree
-from SurPyval.node.transformation import Transformation
+from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
-from SurPyval.distributions.arbitrary import ArbitraryDistribution
-from SurPyval.node.node import Node
-
-
-def likihood_node(y):
-    distr = ArbitraryDistribution(lambda alpha: np.sum(np.log(alpha)) - np.dot(y.T, alpha))
-    return Node(distr, None, {"alpha_event": "alpha"})
-
-
-def survival_node(y):
-    distr = ArbitraryDistribution(lambda alpha: - np.dot(y.T, alpha))
-    return Node(distr, None, {"alpha_censored": "alpha"})
+from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
 class ExponentialRegression(Model):
@@ -28,8 +18,7 @@ class ExponentialRegression(Model):
             * beta - the coefficients for the covariates
 
         Transformations:
-            * alpha_event - the alpha to be passed into the exponential distr for non-censored observations
-            * alpha_censored - the alpha to be passed into the exponential distr for censored observations
+            * alpha - (n * 1) parameters for individual scale of exponential distirbution
 
         Data:
             * x - an (n x k) matrix of covariates
@@ -42,6 +31,8 @@ class ExponentialRegression(Model):
 
         Prior:
             * beta - prior for coefficient for covariates, commonly Gaussian
+
+        $$\lambda $$
     """
 
     def __init__(self, prior_dict, y, event, x):
@@ -54,17 +45,13 @@ class ExponentialRegression(Model):
 
         self.transformations = [
             Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][data_dict["event"].astype(bool)], parameter_dict["beta"])),
-                    "alpha_event"),
-            Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][~data_dict["event"].astype(bool)], parameter_dict["beta"])),
-                    "alpha_censored")
+                    lambda data_dict, parameter_dict: np.exp(np.sum(data_dict["x"] * parameter_dict["beta"], axis = 1)),
+                    "alpha")
         ]
         
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y_event": likihood_node(y[event.astype(bool)]),
-            "y_censored": survival_node(y[~event.astype(bool)])
+            "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
         }
 
         self.node_tree = NodeTree(self.node_dict, 

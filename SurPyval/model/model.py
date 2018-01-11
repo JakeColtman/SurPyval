@@ -1,33 +1,69 @@
 from scipy.optimize import minimize
 import emcee as em
 import numpy as np
+from typing import Dict, List, Any
+
+from SurPyval.parameter.parameter import Parameter
+from SurPyval.parameter.transformation import Transformation
+from SurPyval.node.tree import NodeTree
 
 from SurPyval.samplers.emceesampler import EmceeSampler
 
 
 class Model(object):
     """
-        High level class that does the actual number crunching
-        Runs the MCMC approximation to the marginalization
+        High level class that coordinates the forming and estimating models
 
-        Thoughts for the future:
-            * Allow non-emcee MCMC
-            * Allow other approximations (VI?)
-            * Support conjugate updating
+        Combines together:
+            * `NodeTree`
+            * Dictionary of data
+            * Model `Parameter`s
+            * Model `Transformation`s
+
+        Parameters
+        ----------
+        node_tree: NodeTree
+                   The graphical structure of the model
+        data_dict: Dict[str,array-like]
+                   lookup from name to data (e.g. (event->np.array([True, False, True])
+        parameters: List[Parameter]
+                    Parameters used in the model
+        transformations: List[Transformation]
+                         All of the transformation used in the model
+
+        Attributes
+        ----------
+        posterior: EmceeSampler
+                   sampler for draws of the parameters from the posterior distribution
+
     """
-    
-    def sample_posterior(self, n_samples, store = True, append = True):
-        new_samples = self.posterior.sample(n_samples)
-        if store:
-            if append: 
-                try:
-                    self.posterior_samples.append(new_samples)
-                except:
-                    self.posterior_samples = [new_samples]
-            else:
-                self.posterior_samples = [new_samples]
-                
-    def fit(self, n_walkers = 4, burn = 500):
+
+    def __init__(self, node_tree: NodeTree, data_dict: Dict[str, Any], parameters: List[Parameter], transformations: List[Transformation]):
+        self.node_tree = node_tree
+        self.data_dict = data_dict
+        self.parameters = parameters
+        self.transformations = transformations
+        self.posterior: EmceeSampler = None
+
+    def fit(self, n_walkers: int =4, burn: int =500):
+        """
+        Generate a sampler for the posterior distribution
+
+        Populate the `self.posterior` variable with a `Sampler` object.
+        Sampling is started in a small sphere around the maximum likihood estimate
+
+        Parameters
+        ----------
+        n_walkers: int, optional
+                   number of MCMC chains to use (default 4)
+        burn: int, option
+              number of samples required to reach convergence (default 500)
+
+        Returns
+        -------
+        None
+            The function has the side effect of populating self.posterior
+        """
 
         def generate_starting_points():
             max_lik_point = self.maximum_likihood()
@@ -42,7 +78,18 @@ class Model(object):
         return self      
 
     def maximum_likihood(self):
+        """
+        Calculate the parameter array that maximizes the joint likihood
+
+        Corresponds to the the mode of samples from the posterior
+        Useful for quick estimates and as a starting point for MCMC
+
+        Returns
+        -------
+        array_like
+            flat array of parameters
+        """
         neg_lok_lik = lambda *args: -self.node_tree.log_lik(*args)
-        result = minimize(neg_lok_lik, [1] * self.node_tree.length())
+        result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
         max_lik_point = result["x"]
         return max_lik_point

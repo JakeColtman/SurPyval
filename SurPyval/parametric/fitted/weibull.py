@@ -1,7 +1,5 @@
 import numpy as np
 
-from SurPyval.samplers.emceesampler import EmceeSampler
-from SurPyval.samplers.npsampler import NumpySampler
 from SurPyval.parameter.parameter import Parameter
 from SurPyval.node.tree import NodeTree
 from SurPyval.model.model import Model
@@ -46,7 +44,6 @@ class FittedWeibull(Model):
             There isn't a (reasonable) conjugate prior for \beta, so a Gaussian prior is used
             This means that fitting the model requires some numerical approximation, currently MCMC
     """
-
 
     def __init__(self, prior_dict, y, event):
 
