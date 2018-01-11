@@ -1,27 +1,26 @@
 import numpy as np
+from typing import Dict, List, Any
+
 from SurPyval.node.node import exponential, gaussian
 from SurPyval.parameter.parameter import Parameter
-
+from SurPyval.node.node import Node
+from SurPyval.parameter.transformation import Transformation
 
 class NodeTree(object):
     """
-        Data structure to hold together the various components of the model
+        Encapsulates the graphical model and allows clients to interact with the log-likihood
 
-        There are 4 main components:
-            * node -> `Node` - a variable in the graphical model
-            * data -> {pandas | numpy} data representing covariates, censoring etc.
-            * parameters -> the unknown variable we're trying to predict
-            * transformations -> composite parameters constructed from data and parameters
-
-        args:
-
-            * node_dict : Map<node_name,Node>
-            * data_dict: Map<data_name,data>
-            * parameters: List<Parameter>
-            * transformations: List<Transformation>
+        Parameters
+        ----------
+        data_dict: Dict[str,array-like]
+                   lookup from name to data (e.g. (event->np.array([True, False, True])
+        parameters: List[Parameter]
+                    Parameters used in the model
+        transformations: List[Transformation]
+                         All of the transformation used in the model
     """
 
-    def __init__(self, node_dict, data_dict, parameters, transformations):
+    def __init__(self, node_dict: Dict[str, Node], data_dict: Dict[str, Any], parameters: List[Parameter], transformations: List[Transformation]):
         self.parameters = parameters
         self.data_dict = data_dict
         self.transformations = transformations
@@ -69,7 +68,7 @@ class NodeTree(object):
     def add_node(self, node_name, node):
         new_dict = self.node_dict
         new_dict[node_name] = node
-        return NodeTree(new_dict, self.data_dict, self.parameters, self.parameters)
+        return NodeTree(new_dict, self.data_dict, self.parameters, self.transformations)
 
     def flattened_parameter_split_points(self):
         """

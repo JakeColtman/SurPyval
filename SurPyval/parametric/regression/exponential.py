@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.stats
 from typing import Any
+
 from SurPyval.node.tree import NodeTree
 from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
