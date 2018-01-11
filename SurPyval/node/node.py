@@ -1,6 +1,7 @@
-from SurPyval.distributions.gaussian import Gaussian
-from SurPyval.distributions.exponential import Exponential
-from SurPyval.distributions.gamma import Gamma
+from scipy.stats import rv_continuous
+import scipy.stats
+
+from typing import Dict
 
 
 class Node:
@@ -15,40 +16,35 @@ class Node:
             * Route model parameters to the correct distribution parameters
     """
 
-    def __init__(self, distribution, sampler, parameter_dict):
+    def __init__(self, distribution: rv_continuous, parameter_dict: Dict[str, str]):
         self.distribution = distribution
-        self.sampler = sampler
         self.parameter_dict = parameter_dict
         self.parameter_names = parameter_dict.keys()
 
-    def sample(self, n_samples):
-        return self.sampler.sample(n_samples)
-
-    def log_lik(self, **kwargs):
+    def parse_unflattened_parameters(self, **kwargs):
         filtered_kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
-        renamed_kwargs = {self.parameter_dict[x]: filtered_kwargs[x] for x in filtered_kwargs}
-        return self.distribution.log_lik(**renamed_kwargs)
-    
+        return {self.parameter_dict[x]: filtered_kwargs[x] for x in filtered_kwargs}
+
+    def logpdf(self, **kwargs):
+        return self.distribution.logpdf(**self.parse_unflattened_parameters(**kwargs))
+
     def pdf(self, **kwargs):
-        kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
-        return self.distribution.pdf(**kwargs)
+        return self.distribution.logpdf(**self.parse_unflattened_parameters(**kwargs))
+
+    def ppf(self, **kwargs):
+        return self.distribution.ppf(**self.parse_unflattened_parameters(**kwargs))
 
 
-def gaussian(mu, covar, parameter_dict):
-    distr = Gaussian(mu, covar)
-    sampler = distr.sampler
-    return Node(distr, sampler, parameter_dict)
+def gaussian(parameter_dict):
+    distr = scipy.stats.norm
+    return Node(distr, parameter_dict)
 
 
-def exponential(alpha, parameter_dict):
-    distr = Exponential(alpha)
-    sampler = distr.sampler
-    return Node(distr, sampler, parameter_dict)
+def exponential(parameter_dict):
+    distr = scipy.stats.expon
+    return Node(distr, parameter_dict)
 
 
-def gamma_from_mean_variance(mean, variance, parameter_dict):
-    llambda = mean / variance
-    alpha = llambda * mean
-    distr = Gamma(alpha, llambda)
-    sampler = distr.sampler
-    return Node(distr, sampler, parameter_dict)
+def gamma_from_mean_variance(parameter_dict: Dict[str, str]):
+    distr = scipy.stats.gamma
+    return Node(distr, parameter_dict)

@@ -1,12 +1,11 @@
 import numpy as np
-import scipy as sp
+import scipy.stats
 
 from SurPyval.node.tree import NodeTree
-from SurPyval.node.transformation import Transformation
+from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
-from SurPyval.node.node import Node
-from SurPyval.distributions.datalikihood import DataLikihood
+from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
 class ExponentialRegression(Model):
@@ -19,8 +18,7 @@ class ExponentialRegression(Model):
             * beta - the coefficients for the covariates
 
         Transformations:
-            * alpha_event - the alpha to be passed into the exponential distr for non-censored observations
-            * alpha_censored - the alpha to be passed into the exponential distr for censored observations
+            * alpha - (n * 1) parameters for individual scale of exponential distirbution
 
         Data:
             * x - an (n x k) matrix of covariates
@@ -47,16 +45,13 @@ class ExponentialRegression(Model):
 
         self.transformations = [
             Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][data_dict["event"].astype(bool)], parameter_dict["beta"])),
-                    "alpha_event"),
-            Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.dot(data_dict["x"][~data_dict["event"].astype(bool)], parameter_dict["beta"])),
-                    "alpha_censored")
+                    lambda data_dict, parameter_dict: np.exp(np.sum(data_dict["x"] * parameter_dict["beta"], axis = 1)),
+                    "alpha")
         ]
         
         self.node_dict = {
             "beta": prior_dict["beta"],
-            "y": DataLikihood(sp.stats.expon, y, event, x)
+            "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
         }
 
         self.node_tree = NodeTree(self.node_dict, 
