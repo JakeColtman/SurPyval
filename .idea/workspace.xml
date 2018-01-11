@@ -3,17 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/__init__.py" afterPath="$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/datalikihood.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/distribution.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/exponential.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/gamma.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/gaussian.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/distributions/inverteddistribution.py" afterPath="" />
       <change beforePath="$PROJECT_DIR$/SurPyval/model/model.py" afterPath="$PROJECT_DIR$/SurPyval/model/model.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/node.py" afterPath="$PROJECT_DIR$/SurPyval/node/node.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/transformation.py" afterPath="$PROJECT_DIR$/SurPyval/parameter/transformation.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,8 +96,8 @@
       <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="27" column="37" lean-forward="false" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+            <state relative-caret-position="297">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -589,7 +579,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515605900022</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactored Model class to be more general">
+      <created>1515658319829</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1515658319829</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -696,7 +693,8 @@
     <MESSAGE value="Doc string for Parameter" />
     <MESSAGE value="Add documentation for exponential regression" />
     <MESSAGE value="Clean up whitespace" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up whitespace" />
+    <MESSAGE value="Refactored Model class to be more general" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored Model class to be more general" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1027,8 +1025,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="27" column="37" lean-forward="false" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        <state relative-caret-position="297">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
