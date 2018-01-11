@@ -3,6 +3,7 @@ import scipy.stats
 from typing import Any
 
 from SurPyval.node.tree import NodeTree
+from SurPyval.node.node import Node
 from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
@@ -13,36 +14,40 @@ class ExponentialRegression(Model):
     """
         Fit an exponential regression to the lifetime data with coefficients
 
-        The linear predictor is currently transformed through exp(.) following XXX
+        The linear predictor is (by default) transformed through exp(.) following XXX
 
-        Parameters:
-            * beta - the coefficients for the covariates
+        Parameters
+        ----------
+        y: array-like
+           (n * 1) array of lifetimes - both censored and events
+        event: array-like
+            (n * 1) array of whether an event was observed
+            1 if event occurred or 0 if observation is censored
+        x: array-like
+           (n * k) array of covariates
+        beta_prior: Node
+                    Commonly a Gaussian node
+        hyper_parameter_dict: Dict[str, float]
+                              lookup from hyper parameter name to value
+                              e.g. for a one-dimensional Gaussian node {"mu_0": 0, "cov": 1000}
 
-        Transformations:
-            * alpha - (n * 1) parameters for individual scale of exponential distirbution
-
-        Data:
-            * x - an (n x k) matrix of covariates
-            * event - an (n * 1) vector of int where `1` means an event happened and `0` means the observation was censored
-
-        Nodes:
-            * beta - prior distribution for beta (usually Gaussian)
-            * y_event - likihood for non-censored observations
-            * y_censored - likihood for censored observations
-
-        Prior:
-            * beta - prior for coefficient for covariates, commonly Gaussian
-
+        Examples
+        --------
+        >>> from SurPyval.node.node import gaussian
+        >>> import pandas as pd
+        >>> beta_prior = gaussian({"mu_0": "loc", "cov": "scale"})
+        >>> data = pd.DataFrame({"y": [1.0, 2.0], "x_0": [1.0, 1.0], "event": [1, 0]})
+        >>> ExponentialRegression(data["y"], data["event"], data["x"], beta_prior, {"mu_0": 0.0, "cov": 100.0})
     """
 
-    def __init__(self, y, event, x, beta_prior, hyparameter_dict):
+    def __init__(self, y, event, x, beta_prior, hyper_parameter_dict):
 
         data_dict = {
             "y": y,
             "x": x,
             "event": event
         }
-        data_dict.update(**hyparameter_dict)
+        data_dict.update(**hyper_parameter_dict)
 
         transformations = [
             Transformation(
@@ -52,7 +57,7 @@ class ExponentialRegression(Model):
 
         node_dict = {
             "beta": beta_prior,
-            "y": DataLikihoodNode( scipy.stats.expon, {"alpha": "scale"} )
+            "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
         }
         parameters = [
             Parameter("beta", 1)

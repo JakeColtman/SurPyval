@@ -24,12 +24,6 @@ class Model(object):
         ----------
         node_tree: NodeTree
                    The graphical structure of the model
-        data_dict: Dict[str,array-like]
-                   lookup from name to data (e.g. (event->np.array([True, False, True])
-        parameters: List[Parameter]
-                    Parameters used in the model
-        transformations: List[Transformation]
-                         All of the transformation used in the model
 
         Attributes
         ----------
