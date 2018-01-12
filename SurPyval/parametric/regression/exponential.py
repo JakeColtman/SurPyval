@@ -27,27 +27,23 @@ class ExponentialRegression(Model):
            (n * k) array of covariates
         beta_prior: Node
                     Commonly a Gaussian node
-        hyper_parameter_dict: Dict[str, float]
-                              lookup from hyper parameter name to value
-                              e.g. for a one-dimensional Gaussian node {"mu_0": 0, "cov": 1000}
 
         Examples
         --------
         >>> from SurPyval.node.node import gaussian
         >>> import pandas as pd
-        >>> beta_prior = gaussian({"mu_0": "loc", "cov": "scale"})
+        >>> beta_prior = gaussian({"beta": "x"}, constant_dict={"loc": 0.0, "scale": 100.0})
         >>> data = pd.DataFrame({"y": [1.0, 2.0], "x_0": [1.0, 1.0], "event": [1, 0]})
-        >>> ExponentialRegression(data["y"], data["event"], data["x"], beta_prior, {"mu_0": 0.0, "cov": 100.0})
+        >>> ExponentialRegression(data["y"], data["event"], data["x"], beta_prior})
     """
 
-    def __init__(self, y, event, x, beta_prior, hyper_parameter_dict):
+    def __init__(self, y, event, x, beta_prior):
 
         data_dict = {
             "y": y,
             "x": x,
             "event": event
         }
-        data_dict.update(**hyper_parameter_dict)
 
         transformations = [
             Transformation(

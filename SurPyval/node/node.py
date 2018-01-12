@@ -42,13 +42,13 @@ class Node:
     def __init__(self, distribution: rv_continuous, parameter_dict: Dict[str, str], constants_dict: Dict[str,Any]=None):
         self.distribution = distribution
         self.parameter_dict = parameter_dict
-        self.constant_dicts = constants_dict if constants_dict is not None else {}
+        self.constants_dict = constants_dict if constants_dict is not None else {}
         self.parameter_names = parameter_dict.keys()
 
     def parse_unflattened_parameters(self, **kwargs):
         filtered_kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
         renamed_kwargs = {self.parameter_dict[x]: filtered_kwargs[x] for x in filtered_kwargs}
-        return {**renamed_kwargs, **self.constant_dict}
+        return {**renamed_kwargs, **self.constants_dict}
 
     def logpdf(self, **kwargs):
         return self.distribution.logpdf(**self.parse_unflattened_parameters(**kwargs))
@@ -60,16 +60,16 @@ class Node:
         return self.distribution.ppf(**self.parse_unflattened_parameters(**kwargs))
 
 
-def gaussian(parameter_dict):
+def gaussian(parameter_dict, constant_dict=None):
     distr = scipy.stats.norm
-    return Node(distr, parameter_dict)
+    return Node(distr, parameter_dict, constant_dict)
 
 
-def exponential(parameter_dict):
+def exponential(parameter_dict, constant_dict=None):
     distr = scipy.stats.expon
-    return Node(distr, parameter_dict)
+    return Node(distr, parameter_dict, constant_dict)
 
 
-def gamm(parameter_dict: Dict[str, str]):
+def gamma(parameter_dict: Dict[str, str], constant_dict=None):
     distr = scipy.stats.gamma
-    return Node(distr, parameter_dict)
+    return Node(distr, parameter_dict, constant_dict)
