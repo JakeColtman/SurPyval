@@ -5,13 +5,25 @@ from typing import Dict
 
 class Node:
     """
-        A node in the model's graphical model / node tree
+        A node in the model's graphical model
 
-        Each node represents a variable in the model
+        Generally anything that contributes to the joint probability will be a node
+        (see by contrast Transformations that don't contribute to the pdf)
 
-        They:
-            * Provide a common API
-            * Route model parameters to the correct distribution parameters
+        The primary job of the Node class is to handle routing between SurPyval concepts and scipy classes
+
+        Parameters
+        ----------
+        distribution: rv_continuous
+                      a scipy style distribution (https://docs.scipy.org/doc/scipy/reference/stats.html)
+        parameter_dict: Dict[str, str]
+                        a mapping from Parameter name to scipy arg name, e.g. {"alpha": "shape", "beta": "scale"}
+
+        Examples
+        --------
+        >>> from scipy.stats import gamma
+        >>> parameter_dict = {"alpha": "shape", "llambda": "scale"}
+        >>> node = Node(gamma, parameter_dict)
     """
 
     def __init__(self, distribution: rv_continuous, parameter_dict: Dict[str, str]):
@@ -43,6 +55,6 @@ def exponential(parameter_dict):
     return Node(distr, parameter_dict)
 
 
-def gamma_from_mean_variance(parameter_dict: Dict[str, str]):
+def gamm(parameter_dict: Dict[str, str]):
     distr = scipy.stats.gamma
     return Node(distr, parameter_dict)
