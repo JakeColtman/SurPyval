@@ -4,6 +4,14 @@ from SurPyval.node.node import Node
 
 
 class DataLikihoodNode(Node):
+    """
+    Extension of a standard Node to automatically take account of censoring
+
+    Uncensored observations contribute their pdf to jointlikihood
+    Censored events contribute only their survival function
+
+    DataLikihoodNode automatically does this routing
+    """
 
     def logpdf(self, **kwargs):
         processed_kwargs = self.parse_unflattened_parameters(**kwargs)
