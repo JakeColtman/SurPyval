@@ -1,24 +1,14 @@
 from scipy.optimize import minimize
 import emcee as em
 import numpy as np
-from typing import Dict, List, Any
 
-from SurPyval.parameter.parameter import Parameter
-from SurPyval.parameter.transformation import Transformation
 from SurPyval.node.tree import NodeTree
-
 from SurPyval.samplers.emceesampler import EmceeSampler
 
 
 class Model(object):
     """
         High level class that coordinates the forming and estimating models
-
-        Combines together:
-            * `NodeTree`
-            * Dictionary of data
-            * Model `Parameter`s
-            * Model `Transformation`s
 
         Parameters
         ----------

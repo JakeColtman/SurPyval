@@ -1,10 +1,10 @@
 import numpy as np
 from typing import Dict, List, Any
 
-from SurPyval.node.node import exponential, gaussian
 from SurPyval.parameter.parameter import Parameter
 from SurPyval.node.node import Node
 from SurPyval.parameter.transformation import Transformation
+
 
 class NodeTree(object):
     """
@@ -106,78 +106,78 @@ class NodeTree(object):
             flat_list.append(parameter_dict[node_name])
         return np.array(flat_list)
 
-import unittest
-
-class TestNodeTree(unittest.TestCase):
-
-    def test_add_node(self):
-        node_dict = {
-            "beta": exponential(1.0, {"beta": "alpha"}),
-            "gamma": exponential(2.0, {"gamma": "alpha"})
-        }
-        parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
-        tree = NodeTree(node_dict, {}, parameters, [])
-        new_tree = tree.add_node("gaussian", gaussian(np.array([1.0, 2.0]), np.diag([2.0, 2.0]), {"beta": "x"}))
-        self.assertEqual(len(new_tree.node_dict), 3)
-        self.assertTrue("gaussian" in new_tree.node_dict)
-
-    def test_two_nodes_sharing_a_variable(self):
-        node_dict = {
-            "beta_0": exponential(1.0, {"beta": "alpha"}),
-            "beta_1": exponential(2.0, {"beta": "alpha"}),
-            "gamma": exponential(3.0, {"gamma": "alpha"})
-        }
-
-        parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
-        tree = NodeTree(node_dict, {}, parameters, [])
-
-        unflattened_parameters = tree.unflatten_parameter_array(np.array([8.0, 2.0]))
-
-        self.assertEqual(unflattened_parameters["beta"][0], 8.0)
-        self.assertEqual(unflattened_parameters["gamma"][0], 2.0)
-
-
-    def test_basic_parameter_unflattening(self):
-        node_dict = {
-            "beta": exponential(2.0, {"beta": "alpha"}),
-            "gamma": exponential(3.0, {"gamma": "alpha"})
-        }
-
-        parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
-        tree = NodeTree(node_dict, {}, parameters, [])
-
-        unflattened_parameters = tree.unflatten_parameter_array(np.array([8.0, 5.0]))
-
-        self.assertEqual(unflattened_parameters["beta"][0], 8.0)
-        self.assertEqual(unflattened_parameters["gamma"][0], 5.0)
-
-    def test_basic_parameter_flattening(self):
-        node_dict = {
-            "beta": exponential(1.0, {"beta": "alpha"}),
-            "gamma": exponential(2.0, {"gamma": "alpha"})
-        }
-
-        parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
-        tree = NodeTree(node_dict, {}, parameters, [])
-
-        flattened_parameters = tree.flatten_parameter_dict({"gamma": 5.0, "beta": 8.0})
-
-        self.assertEqual(flattened_parameters[0], 8.0)
-        self.assertEqual(flattened_parameters[1], 5.0)
-
-
-    def test_flattening_inverse_of_unflattening(self):
-        node_dict = {
-            "beta": exponential(2.0, {"beta": "alpha"}),
-            "gamma": exponential(3.0, {"gamma": "alpha"})
-        }
-
-        parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
-        tree = NodeTree(node_dict, {}, parameters, [])
-
-        original_unflattened_parameters = {"gamma": 5.0, "beta": 8.0}
-        flattened_parameters = tree.flatten_parameter_dict(original_unflattened_parameters)
-        unflattened_parameters = tree.unflatten_parameter_array(flattened_parameters)
-
-        for key in original_unflattened_parameters:
-            self.assertEqual(unflattened_parameters[key], original_unflattened_parameters[key])
+#import unittest
+#
+# class TestNodeTree(unittest.TestCase):
+#
+#     def test_add_node(self):
+#         node_dict = {
+#             "beta": exponential(1.0, {"beta": "alpha"}),
+#             "gamma": exponential(2.0, {"gamma": "alpha"})
+#         }
+#         parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
+#         tree = NodeTree(node_dict, {}, parameters, [])
+#         new_tree = tree.add_node("gaussian", gaussian(np.array([1.0, 2.0]), np.diag([2.0, 2.0]), {"beta": "x"}))
+#         self.assertEqual(len(new_tree.node_dict), 3)
+#         self.assertTrue("gaussian" in new_tree.node_dict)
+#
+#     def test_two_nodes_sharing_a_variable(self):
+#         node_dict = {
+#             "beta_0": exponential(1.0, {"beta": "alpha"}),
+#             "beta_1": exponential(2.0, {"beta": "alpha"}),
+#             "gamma": exponential(3.0, {"gamma": "alpha"})
+#         }
+#
+#         parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
+#         tree = NodeTree(node_dict, {}, parameters, [])
+#
+#         unflattened_parameters = tree.unflatten_parameter_array(np.array([8.0, 2.0]))
+#
+#         self.assertEqual(unflattened_parameters["beta"][0], 8.0)
+#         self.assertEqual(unflattened_parameters["gamma"][0], 2.0)
+#
+#
+#     def test_basic_parameter_unflattening(self):
+#         node_dict = {
+#             "beta": exponential(2.0, {"beta": "alpha"}),
+#             "gamma": exponential(3.0, {"gamma": "alpha"})
+#         }
+#
+#         parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
+#         tree = NodeTree(node_dict, {}, parameters, [])
+#
+#         unflattened_parameters = tree.unflatten_parameter_array(np.array([8.0, 5.0]))
+#
+#         self.assertEqual(unflattened_parameters["beta"][0], 8.0)
+#         self.assertEqual(unflattened_parameters["gamma"][0], 5.0)
+#
+#     def test_basic_parameter_flattening(self):
+#         node_dict = {
+#             "beta": exponential(1.0, {"beta": "alpha"}),
+#             "gamma": exponential(2.0, {"gamma": "alpha"})
+#         }
+#
+#         parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
+#         tree = NodeTree(node_dict, {}, parameters, [])
+#
+#         flattened_parameters = tree.flatten_parameter_dict({"gamma": 5.0, "beta": 8.0})
+#
+#         self.assertEqual(flattened_parameters[0], 8.0)
+#         self.assertEqual(flattened_parameters[1], 5.0)
+#
+#
+#     def test_flattening_inverse_of_unflattening(self):
+#         node_dict = {
+#             "beta": exponential(2.0, {"beta": "alpha"}),
+#             "gamma": exponential(3.0, {"gamma": "alpha"})
+#         }
+#
+#         parameters = [Parameter("beta", 1.0), Parameter("gamma", 1.0)]
+#         tree = NodeTree(node_dict, {}, parameters, [])
+#
+#         original_unflattened_parameters = {"gamma": 5.0, "beta": 8.0}
+#         flattened_parameters = tree.flatten_parameter_dict(original_unflattened_parameters)
+#         unflattened_parameters = tree.unflatten_parameter_array(flattened_parameters)
+#
+#         for key in original_unflattened_parameters:
+#             self.assertEqual(unflattened_parameters[key], original_unflattened_parameters[key])

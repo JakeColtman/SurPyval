@@ -1,6 +1,5 @@
 from scipy.stats import rv_continuous
 import scipy.stats
-
 from typing import Dict
 
 
@@ -10,7 +9,6 @@ class Node:
 
         Each node represents a variable in the model
 
-        Nodes act as an anticorruption layer between NodeTree and the internal workings of samplers and distributions
         They:
             * Provide a common API
             * Route model parameters to the correct distribution parameters
