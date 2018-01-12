@@ -1,5 +1,6 @@
 from typing import Callable, Dict, Any
 
+
 class Transformation(object):
     """
         Allows the definition of composite "parameters" to add to the parameter dictionary

@@ -1,7 +1,9 @@
 import numpy as np
 import scipy.stats
+from typing import Any
 
 from SurPyval.node.tree import NodeTree
+from SurPyval.node.node import Node
 from SurPyval.parameter.transformation import Transformation
 from SurPyval.model.model import Model
 from SurPyval.parameter.parameter import Parameter
@@ -12,52 +14,56 @@ class ExponentialRegression(Model):
     """
         Fit an exponential regression to the lifetime data with coefficients
 
-        The linear predictor is currently transformed through exp(.) following XXX
+        The linear predictor is (by default) transformed through exp(.) following XXX
 
-        Parameters:
-            * beta - the coefficients for the covariates
+        Parameters
+        ----------
+        y: array-like
+           (n * 1) array of lifetimes - both censored and events
+        event: array-like
+            (n * 1) array of whether an event was observed
+            1 if event occurred or 0 if observation is censored
+        x: array-like
+           (n * k) array of covariates
+        beta_prior: Node
+                    Commonly a Gaussian node
 
-        Transformations:
-            * alpha - (n * 1) parameters for individual scale of exponential distirbution
-
-        Data:
-            * x - an (n x k) matrix of covariates
-            * event - an (n * 1) vector of int where `1` means an event happened and `0` means the observation was censored
-
-        Nodes:
-            * beta - prior distribution for beta (usually Gaussian)
-            * y_event - likihood for non-censored observations
-            * y_censored - likihood for censored observations
-
-        Prior:
-            * beta - prior for coefficient for covariates, commonly Gaussian
-
-        $$\lambda $$
+        Examples
+        --------
+        >>> from SurPyval.node.node import gaussian
+        >>> import pandas as pd
+        >>> beta_prior = gaussian({"beta": "x"}, constant_dict={"loc": 0.0, "scale": 100.0})
+        >>> data = pd.DataFrame({"y": [1.0, 2.0], "x_0": [1.0, 1.0], "event": [1, 0]})
+        >>> ExponentialRegression(data["y"], data["event"], data["x"], beta_prior})
     """
 
-    def __init__(self, prior_dict, y, event, x):
+    def __init__(self, y, event, x, beta_prior):
 
-        self.parameters = [Parameter("beta", 1)]
-        self.data_dict = {
+        data_dict = {
+            "y": y,
             "x": x,
             "event": event
         }
 
-        self.transformations = [
+        transformations = [
             Transformation(
-                    lambda data_dict, parameter_dict: np.exp(np.sum(data_dict["x"] * parameter_dict["beta"], axis = 1)),
-                    "alpha")
+                lambda data_dict, parameter_dict: np.exp( np.sum( data_dict["x"] * parameter_dict["beta"], axis=1)),
+                "alpha" )
         ]
-        
-        self.node_dict = {
-            "beta": prior_dict["beta"],
+
+        node_dict = {
+            "beta": beta_prior,
             "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
         }
+        parameters = [
+            Parameter("beta", 1)
+        ]
+        node_tree = NodeTree(node_dict,
+                             data_dict,
+                             parameters,
+                             transformations)
 
-        self.node_tree = NodeTree(self.node_dict, 
-                                  self.data_dict, 
-                                  self.parameters, 
-                                  self.transformations)
+        Model.__init__(self, node_tree)
 
     @staticmethod
     def show_plate():
