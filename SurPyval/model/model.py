@@ -51,7 +51,7 @@ class Model(object):
             return [max_lik_point + np.random.normal(0, 0.01, int(self.node_tree.length())) for x in range(n_walkers)]
         
         ndim = self.node_tree.length()
-        sampler = em.EnsembleSampler(n_walkers, ndim, self.node_tree.log_lik)
+        sampler = em.EnsembleSampler(n_walkers, ndim, self.node_tree.logpdf)
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         
@@ -70,7 +70,7 @@ class Model(object):
         array_like
             flat array of parameters
         """
-        neg_lok_lik = lambda *args: -self.node_tree.log_lik(*args)
+        neg_lok_lik = lambda *args: -self.node_tree.logpdf(*args)
         result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
         max_lik_point = result["x"]
         return max_lik_point

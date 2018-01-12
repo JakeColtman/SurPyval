@@ -49,7 +49,7 @@ class NodeTree(object):
 
         return parameter_dict
 
-    def log_lik(self, flattened_parameters):
+    def logpdf(self, flattened_parameters):
         """
         Access point for other classes to apply numerical methods to loglikihood
         Allows classes to pass in a flat np.array and have the result be parsed
@@ -63,7 +63,8 @@ class NodeTree(object):
         float
         """
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
-        return np.sum(map(lambda x: x.log_lik(**unflattened_parameters), self.node_dict.values()))
+        dict_to_pass = {**unflattened_parameters, **self.data_dict}
+        return np.sum([x.logpdf(**dict_to_pass) for x in self.node_dict.values()])
 
     def add_node(self, node_name, node):
         new_dict = self.node_dict
