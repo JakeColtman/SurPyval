@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="Add generate_r">
+    <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/fitmodel.py" afterPath="$PROJECT_DIR$/SurPyval/model/fitmodel.py" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,24 +86,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/model/__init__.py">
+      <file leaf-file-name="fitmodel.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-              <folding />
+            <state relative-caret-position="295">
+              <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fitmodel.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="670">
+                <caret line="19" column="317" lean-forward="false" selection-start-line="19" selection-start-column="317" selection-end-line="19" selection-end-column="317" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -200,7 +203,6 @@
         <option value="$PROJECT_DIR$/docs/source/index.txt" />
         <option value="$PROJECT_DIR$/SurPyval/parameter/__init__.py" />
         <option value="$PROJECT_DIR$/docs/source/sampler.txt" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py" />
         <option value="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
@@ -212,6 +214,7 @@
         <option value="$PROJECT_DIR$/SurPyval/node/parameter.py" />
         <option value="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" />
         <option value="$PROJECT_DIR$/SurPyval/model/fitmodel.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -761,7 +764,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515868084520</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add ability to generate replicate sets to FitModel for model evaluation">
+      <created>1515868612273</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1515868612273</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -853,7 +863,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Doct strings" />
     <MESSAGE value="Doc string for Parameter" />
     <MESSAGE value="Add documentation for exponential regression" />
     <MESSAGE value="Clean up whitespace" />
@@ -878,7 +887,8 @@
     <MESSAGE value="Create a new FitModel class to handle posterior inference" />
     <MESSAGE value="Make FitModel its own free standing class" />
     <MESSAGE value="Refactor to make Parameters and Transformations into Nodes to simplify the model API and provide clarity about ontology" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor to make Parameters and Transformations into Nodes to simplify the model API and provide clarity about ontology" />
+    <MESSAGE value="Add ability to generate replicate sets to FitModel for model evaluation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add ability to generate replicate sets to FitModel for model evaluation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1122,17 +1132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="363">
-            <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/model/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1220,10 +1219,21 @@
     <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
-          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="670">
+            <caret line="19" column="317" lean-forward="false" selection-start-line="19" selection-start-column="317" selection-end-line="19" selection-end-column="317" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

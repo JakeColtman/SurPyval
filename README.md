@@ -17,10 +17,4 @@ Implementing this philosophy has a number of positive effects on the library:
     * There are no hand-offs to non-python objects
     * Models allow for substitution of any of their composite blocks
     
-The trade-off to get these goods is performance.  Models provide in the library are designed to be tweakable, which limits performance optimizations.  This manifests itself in a number of ways:
-
-    * Straight up crunching speed
-    * Memory useage
-    * Models often don't exploit conjugacy where it exists
-    
-For very large data sets or very complicated models, you might be better off using something like Stan.
+In general, the trade-off to buy the above is speed and memory performance.  Constructing models in a compositional, modifiable way often leads to not being able to get performance improvements.  For medium sized data sets, this isn't a problem, but for very large data sets and complex models speed can be a problem.
