@@ -1,6 +1,5 @@
 import numpy as np
 import scipy.stats
-from typing import Any
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.node.node import Node
