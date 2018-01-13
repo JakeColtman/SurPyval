@@ -47,7 +47,7 @@ class ExponentialRegression(Model):
         transformations = [
             Transformation(
                 lambda data_dict, parameter_dict: np.exp( np.sum( data_dict["x"] * parameter_dict["beta"], axis=1)),
-                "alpha" )
+                "alpha")
         ]
 
         node_dict = {

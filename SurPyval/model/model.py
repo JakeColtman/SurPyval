@@ -74,3 +74,7 @@ class Model(object):
         result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
         max_lik_point = result["x"]
         return max_lik_point
+
+    def sample_replicate(self):
+        posterior_sample_parameters = self.posterior.sample(1)[0]
+        return self.node_tree.generate_replicate(posterior_sample_parameters)

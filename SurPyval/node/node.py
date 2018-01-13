@@ -59,6 +59,25 @@ class Node:
     def ppf(self, **kwargs):
         return self.distribution.ppf(**self.parse_unflattened_parameters(**kwargs))
 
+    def sample(self, size=1, **kwargs):
+        """
+        Draw a single realization of the distribution considered in isolation
+        Returns
+        -------
+        array-like
+            realization of variable
+
+        Examples
+        --------
+        >>> node = exponential({"alpha": "scale", "x": "x"})
+        >>> samples = node.sample(alpha = 10.0, size = 10000)
+        """
+        rvs_kwargs = {**self.parse_unflattened_parameters(**kwargs)}
+        rvs_kwargs.pop("x", None)
+        if size > 1:
+            rvs_kwargs["size"] = size
+        return self.distribution.rvs(**rvs_kwargs)
+
 
 def gaussian(parameter_dict, constant_dict=None):
     distr = scipy.stats.norm
