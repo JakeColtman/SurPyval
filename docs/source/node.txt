@@ -11,10 +11,4 @@ Nodes are composed into NodeTrees
 .. toctree::
    :maxdepth: 2
 
-.. automodapi:: SurPyval.node.node
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`search`
+.. automodapi:: SurPyval.node
