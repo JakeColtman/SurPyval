@@ -14,6 +14,8 @@ class Parameter:
     """
 
     def __init__(self, name, length):
-        # type: (str, int) -> None
         self.name = name
         self.length = length
+
+    def __str__(self):
+        return self.name

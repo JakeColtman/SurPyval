@@ -83,10 +83,9 @@ class NodeTree(object):
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
         sample_dict = {}
         for node_name in self.node_dict:
-            try:
-                sample_dict[node_name] = self.node_dict[node_name].sample(**unflattened_parameters)
-            except Exception as ex:
-                print( ex )
+            if node_name in [x.name for x in self.parameters]:
+                continue
+            sample_dict[node_name] = self.node_dict[node_name].sample(**unflattened_parameters)
         return sample_dict
 
     def add_node(self, node_name, node):
