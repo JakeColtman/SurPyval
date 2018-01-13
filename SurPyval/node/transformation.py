@@ -1,12 +1,16 @@
 from typing import Callable, Dict, Any
 
+from SurPyval.node.node import Node
 
-class Transformation(object):
+
+class DeterministicNode(Node):
     """
-        Allows the definition of composite "parameters" to add to the parameter dictionary
+        Define deterministic transformations of other variables in the model
 
         Useful for simplifying the code of other nodes by pre-baking calculations
         e.g. in a regression model, the linear predictor could be a transformation.
+
+        DeterministicNodes do not contribute to the loglikihood directly
 
         Parameters
         ----------
@@ -20,6 +24,15 @@ class Transformation(object):
     def __init__(self, f_transformation: Callable[[Dict[str, Any], Dict[str, Any]], Any], name):
         self.f_transformation = f_transformation
         self.name = name
+
+    def logpdf(self, **kwargs) -> float:
+        return 0.0
+
+    def pdf(self, **kwargs) -> float:
+        return 1.0
+
+    def ppf(self, **kwargs):
+        raise NotImplementedError("ppf not defined for DeterministicNode")
 
     def transform(self, data_dict, parameter_dict):
         """

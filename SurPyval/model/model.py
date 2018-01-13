@@ -4,9 +4,10 @@ import numpy as np
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.samplers.emceesampler import EmceeSampler
+from SurPyval.model.fitmodel import FitModel
 
 
-class Model(object):
+class Model:
     """
         High level class that coordinates the forming and estimating models
 
@@ -14,17 +15,10 @@ class Model(object):
         ----------
         node_tree: NodeTree
                    The graphical structure of the model
-
-        Attributes
-        ----------
-        posterior: EmceeSampler
-                   sampler for draws of the parameters from the posterior distribution
-
     """
 
     def __init__(self, node_tree: NodeTree):
         self.node_tree = node_tree
-        self.posterior: EmceeSampler = None
 
     def fit(self, n_walkers: int =4, burn: int =500):
         """
@@ -55,8 +49,8 @@ class Model(object):
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         
-        self.posterior = EmceeSampler(sampler, pos)
-        return self      
+        posterior = EmceeSampler(sampler, pos)
+        return FitModel(self.node_tree, posterior)
 
     def maximum_likihood(self):
         """
@@ -74,13 +68,3 @@ class Model(object):
         result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
         max_lik_point = result["x"]
         return max_lik_point
-
-    def sample_replicate(self):
-        posterior_sample_parameters = self.posterior.sample(1)[0]
-        return self.node_tree.generate_replicate(posterior_sample_parameters)
-
-    def predict(self, data_dict):
-        fitted_node_tree = NodeTree(self.node_tree.node_dict, data_dict, self.node_tree.parameters, self.node_tree.transformations)
-        fitted_model = Model(fitted_node_tree)
-        fitted_model.posterior = self.posterior
-        return fitted_model

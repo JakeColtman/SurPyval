@@ -3,9 +3,9 @@ import scipy.stats
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.node.node import Node
-from SurPyval.parameter.transformation import Transformation
+from SurPyval.node.transformation import Transformation
 from SurPyval.model.model import Model
-from SurPyval.parameter.parameter import Parameter
+from SurPyval.node.parameter import Parameter
 from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
