@@ -39,7 +39,7 @@ class Node:
         >>> node = Node(gamma, parameter_dict, {"scale": 1.0, "loc": 10.0})
     """
 
-    def __init__(self, distribution: rv_continuous, parameter_dict: Dict[str, str], constants_dict: Dict[str,Any]=None):
+    def __init__(self, distribution: rv_continuous, parameter_dict: Dict[str, str], constants_dict: Dict[str, Any]=None):
         self.distribution = distribution
         self.parameter_dict = parameter_dict
         self.constants_dict = constants_dict if constants_dict is not None else {}

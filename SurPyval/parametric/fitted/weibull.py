@@ -1,6 +1,6 @@
 import numpy as np
 
-from SurPyval.parameter.parameter import Parameter
+from SurPyval.node.parameter import Parameter
 from SurPyval.node.tree import NodeTree
 from SurPyval.model.model import Model
 

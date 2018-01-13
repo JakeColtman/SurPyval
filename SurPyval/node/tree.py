@@ -1,29 +1,30 @@
 import numpy as np
 from typing import Dict, List, Any
 
-from SurPyval.parameter.parameter import Parameter
+from SurPyval.node.parameter import ParameterNode
 from SurPyval.node.node import Node
-from SurPyval.parameter.transformation import Transformation
+from SurPyval.node.transformation import DeterministicNode
+from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
-class NodeTree(object):
+class NodeTree:
     """
         Encapsulates the graphical model and allows clients to interact with the log-likihood
 
         Parameters
         ----------
+        node_dict: Dict[str, Node]
+                   lookup from name of node a Node
         data_dict: Dict[str,array-like]
                    lookup from name to data (e.g. (event->np.array([True, False, True])
-        parameters: List[Parameter]
-                    Parameters used in the model
-        transformations: List[Transformation]
-                         All of the transformation used in the model
     """
 
-    def __init__(self, node_dict: Dict[str, Node], data_dict: Dict[str, Any], parameters: List[Parameter], transformations: List[Transformation]):
-        self.parameters = parameters
+    def __init__(self, node_dict: Dict[str, Node], data_dict: Dict[str, Any]):
+        self.parameters: List[ParameterNode] = [x for x in node_dict.values() if type(x) is ParameterNode]
+        self.transformations: List[DeterministicNode] = [x for x in node_dict.values() if type(x) is DeterministicNode]
+        self.likihood_nodes: List[DataLikihoodNode] = [x for x in node_dict.values() if type(x) is DataLikihoodNode]
+
         self.data_dict = data_dict
-        self.transformations = transformations
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()
@@ -81,17 +82,7 @@ class NodeTree(object):
             lookup from node to samples
         """
         unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
-        sample_dict = {}
-        for node_name in self.node_dict:
-            if node_name in [x.name for x in self.parameters]:
-                continue
-            sample_dict[node_name] = self.node_dict[node_name].sample(**unflattened_parameters)
-        return sample_dict
-
-    def add_node(self, node_name, node):
-        new_dict = self.node_dict
-        new_dict[node_name] = node
-        return NodeTree(new_dict, self.data_dict, self.parameters, self.transformations)
+        return {x: x.sample(**unflattened_parameters) for x in self.likihood_nodes}
 
     def flattened_parameter_split_points(self):
         """

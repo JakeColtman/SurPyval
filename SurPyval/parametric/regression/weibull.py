@@ -3,9 +3,9 @@ import scipy.stats
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.node.node import Node
-from SurPyval.parameter.transformation import Transformation
+from SurPyval.node.transformation import DeterministicNode
 from SurPyval.model.model import Model
-from SurPyval.parameter.parameter import Parameter
+from SurPyval.node.parameter import ParameterNode
 from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
@@ -38,27 +38,19 @@ class WeibullRegression(Model):
             "event": event
         }
 
-        transformations = [
-            Transformation(
+        llambda = DeterministicNode(
                 lambda data_dict, parameter_dict: np.sum(data_dict["x"] * parameter_dict["beta"], axis=1),
-                "llambda" )
-        ]
+                "llambda")
 
         node_dict = {
-            "beta": beta_prior,
-            "alpha": alpha_prior,
+            "beta": ParameterNode(beta_prior, "beta", 1),
+            "alpha": ParameterNode(alpha_prior, "alpha", 1),
+            "llambda": llambda,
             "y": DataLikihoodNode(scipy.stats.weibull_min, {"alpha": "c", "llambda": "scale"})
         }
 
-        parameters = [
-            Parameter("alpha", 1),
-            Parameter("beta", 1)
-        ]
-
         node_tree = NodeTree(node_dict,
-                             data_dict,
-                             parameters,
-                             transformations)
+                             data_dict)
 
         Model.__init__(self, node_tree)
 
