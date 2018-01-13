@@ -25,6 +25,10 @@ class FitModel:
         posterior_sample_parameters = self.posterior.sample(1)[0]
         return self.node_tree.generate_replicate(posterior_sample_parameters)
 
+    def generate_replicates(self, n_replicates: int):
+        posterior_samples = self.posterior.sample(n_replicates)[:n_replicates]
+        return [self.node_tree.generate_replicate(posterior_sample) for posterior_sample in posterior_samples]
+
     def predict(self, data_dict: Dict[str, Any]):
         fitted_node_tree = NodeTree(self.node_tree.node_dict, data_dict)
         fitted_model = FitModel(fitted_node_tree, self.posterior)

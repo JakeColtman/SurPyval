@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
+    <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="Add generate_r">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/SurPyval/model/fitmodel.py" afterPath="$PROJECT_DIR$/SurPyval/model/fitmodel.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/node.py" afterPath="$PROJECT_DIR$/SurPyval/node/node.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/tree.py" afterPath="$PROJECT_DIR$/SurPyval/node/tree.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parameter/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parameter/parameter.py" afterPath="$PROJECT_DIR$/SurPyval/node/parameter.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parameter/transformation.py" afterPath="$PROJECT_DIR$/SurPyval/node/transformation.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,7 +100,7 @@
         <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
-              <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+              <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -762,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515843648251</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Refactor to make Parameters and Transformations into Nodes to simplify the model API and provide clarity about ontology">
+      <created>1515868084519</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1515868084520</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -878,7 +877,8 @@
     <MESSAGE value="Add ability to predict for new data" />
     <MESSAGE value="Create a new FitModel class to handle posterior inference" />
     <MESSAGE value="Make FitModel its own free standing class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Make FitModel its own free standing class" />
+    <MESSAGE value="Refactor to make Parameters and Transformations into Nodes to simplify the model API and provide clarity about ontology" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor to make Parameters and Transformations into Nodes to simplify the model API and provide clarity about ontology" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1220,7 +1220,7 @@
     <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
-          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
