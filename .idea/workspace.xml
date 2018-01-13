@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/tree.py" afterPath="$PROJECT_DIR$/SurPyval/node/tree.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parameter/parameter.py" afterPath="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/model/model.py" afterPath="$PROJECT_DIR$/SurPyval/model/model.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="77" column="15" lean-forward="true" selection-start-line="77" selection-start-column="15" selection-end-line="77" selection-end-column="15" />
+            <state relative-caret-position="18">
+              <caret line="79" column="29" lean-forward="true" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -84,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="65" column="55" lean-forward="true" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+            <state relative-caret-position="379">
+              <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -157,6 +156,7 @@
       <find>size</find>
       <find>unflatten_parameter_array</find>
       <find>append_transformations</find>
+      <find>genera</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -199,9 +199,9 @@
         <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/node.py" />
-        <option value="$PROJECT_DIR$/SurPyval/model/model.py" />
         <option value="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/tree.py" />
+        <option value="$PROJECT_DIR$/SurPyval/model/model.py" />
       </list>
     </option>
   </component>
@@ -721,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515837504112</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Don't include priors in the posterior sample">
+      <created>1515837797624</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1515837797624</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -852,7 +859,8 @@
     <MESSAGE value="README" />
     <MESSAGE value="Implement Weibull regression in pre-baked models" />
     <MESSAGE value="Add ability to sample replicate of data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add ability to sample replicate of data" />
+    <MESSAGE value="Don't include priors in the posterior sample" />
+    <option name="LAST_COMMIT_MESSAGE" value="Don't include priors in the posterior sample" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1175,18 +1183,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
+    <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="65" column="55" lean-forward="true" selection-start-line="65" selection-start-column="55" selection-end-line="65" selection-end-column="55" />
+        <state relative-caret-position="18">
+          <caret line="79" column="29" lean-forward="true" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
+    <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="77" column="15" lean-forward="true" selection-start-line="77" selection-start-column="15" selection-end-line="77" selection-end-column="15" />
+        <state relative-caret-position="379">
+          <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
           <folding />
         </state>
       </provider>
