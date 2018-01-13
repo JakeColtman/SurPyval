@@ -4,9 +4,10 @@ import numpy as np
 
 from SurPyval.node.tree import NodeTree
 from SurPyval.samplers.emceesampler import EmceeSampler
+from SurPyval.model.fitmodel import FitModel
 
 
-class Model(object):
+class Model:
     """
         High level class that coordinates the forming and estimating models
 
@@ -48,8 +49,8 @@ class Model(object):
         p0 = generate_starting_points()
         pos, prob, state = sampler.run_mcmc(p0, burn)
         
-        self.posterior = EmceeSampler(sampler, pos)
-        return self      
+        posterior = EmceeSampler(sampler, pos)
+        return FitModel(self.node_tree, posterior)
 
     def maximum_likihood(self):
         """
