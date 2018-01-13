@@ -66,6 +66,28 @@ class NodeTree(object):
         dict_to_pass = {**unflattened_parameters, **self.data_dict}
         return np.sum([x.logpdf(**dict_to_pass) for x in self.node_dict.values()])
 
+    def generate_replicate(self, flattened_parameters):
+        """
+        Draw a realization the model conditional on the value of parameters
+
+        Parameters
+        ----------
+        flattened_parameters: array-like
+                              length should be equal self.length
+
+        Returns
+        -------
+        Dict[str, array-like]
+            lookup from node to samples
+        """
+        unflattened_parameters = self.unflatten_parameter_array(flattened_parameters)
+        sample_dict = {}
+        for node_name in self.node_dict:
+            if node_name in [x.name for x in self.parameters]:
+                continue
+            sample_dict[node_name] = self.node_dict[node_name].sample(**unflattened_parameters)
+        return sample_dict
+
     def add_node(self, node_name, node):
         new_dict = self.node_dict
         new_dict[node_name] = node

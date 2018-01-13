@@ -1,21 +1,26 @@
-# This is entirely incomplete, still a WIP
+# WIP - API subject to sweeping changes
 
 # SurPyval
 
-SurPyval is a strongly opinionated survival analysis library.  It has beliefs about the best way to conduct statistical analysis, and tries to make it as easy as possible for the user to do the right thing and as hard as possible to do the wrong thing.  
+SurPyval is a Bayesian survival analysis library
 
-## Core beliefs:
+## Philosophy:
+    
+    * Models should be transparent about their assumptions and workings
+    * Models should allow tweaks and modifications
 
-* The best way to approach modelling is to start simple and build in complexity as required
-* Model stacking and averaging is a _good thing_
-* We should be continually checking models and results for robustness
-* Bayesian and frequentist models are better together
+Implementing this philosophy has a number of positive effects on the library:
 
-## Things which actually work:
+    * The log-likihood and plate diagrams of models are exposed
+    * Models are created through composition of simple units
+    * SurPyval objects thinly wrap and expose well-know libraries (esp. scipy)
+    * There are no hand-offs to non-python objects
+    * Models allow for substitution of any of their composite blocks
+    
+The trade-off to get these goods is performance.  Models provide in the library are designed to be tweakable, which limits performance optimizations.  This manifests itself in a number of ways:
 
-### Exponential:
-
-* ML fitting
-* Bayesian conjugate fitting
-* ML exponential regression
-* Bayesian exponential regression
+    * Straight up crunching speed
+    * Memory useage
+    * Models often don't exploit conjugacy where it exists
+    
+For very large data sets or very complicated models, you might be better off using something like Stan.
