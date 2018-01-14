@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Dict, Any
 
 from SurPyval.node.node import Node
 
@@ -12,6 +13,10 @@ class DataLikihoodNode(Node):
 
     DataLikihoodNode automatically does this routing
     """
+
+    def __init__(self, distribution, data: Any, parameter_dict: Dict[str, str], constants_dict: Dict[str, Any]=None):
+        self.data = data
+        Node.__init__(self, distribution, parameter_dict, constants_dict)
 
     def logpdf(self, **kwargs):
         processed_kwargs = self.parse_unflattened_parameters(**kwargs)

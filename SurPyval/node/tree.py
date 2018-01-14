@@ -5,6 +5,7 @@ from SurPyval.node.parameter import ParameterNode
 from SurPyval.node.node import Node
 from SurPyval.node.transformation import DeterministicNode
 from SurPyval.node.datalikihoodnode import DataLikihoodNode
+from SurPyval.node.datanode import DataNode
 
 
 class NodeTree:
@@ -19,12 +20,12 @@ class NodeTree:
                    lookup from name to data (e.g. (event->np.array([True, False, True])
     """
 
-    def __init__(self, node_dict: Dict[str, Node], data_dict: Dict[str, Any]):
+    def __init__(self, node_dict: Dict[str, Node]):
         self.parameters: List[ParameterNode] = [x for x in node_dict.values() if type(x) is ParameterNode]
         self.transformations: List[DeterministicNode] = [x for x in node_dict.values() if type(x) is DeterministicNode]
         self.likihood_nodes: List[DataLikihoodNode] = [x for x in node_dict.values() if type(x) is DataLikihoodNode]
 
-        self.data_dict = data_dict
+        self.data_dict = {x[0]: x[1].data for x in node_dict.items() if type(x[1]) is DataLikihoodNode or type(x[1]) is DataNode}
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()

@@ -1,12 +1,8 @@
 import numpy as np
 import scipy.stats
 
-from SurPyval.node.tree import NodeTree
-from SurPyval.node.node import Node
-from SurPyval.node.transformation import DeterministicNode
+from SurPyval.node import NodeTree, Node, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
 from SurPyval.model.model import Model
-from SurPyval.node.parameter import ParameterNode
-from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
 class WeibullRegression(Model):
@@ -32,11 +28,6 @@ class WeibullRegression(Model):
     """
 
     def __init__(self, y, event, x, alpha_prior, beta_prior):
-        data_dict = {
-            "y": y,
-            "x": x,
-            "event": event
-        }
 
         llambda = DeterministicNode(
                 lambda data_dict, parameter_dict: np.sum(data_dict["x"] * parameter_dict["beta"], axis=1),
@@ -46,11 +37,12 @@ class WeibullRegression(Model):
             "beta": ParameterNode(beta_prior, "beta", 1),
             "alpha": ParameterNode(alpha_prior, "alpha", 1),
             "llambda": llambda,
-            "y": DataLikihoodNode(scipy.stats.weibull_min, {"alpha": "c", "llambda": "scale"})
+            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "c", "llambda": "scale"}),
+            "x": DataNode("x", x),
+            "event": DataNode("event", event),
         }
 
-        node_tree = NodeTree(node_dict,
-                             data_dict)
+        node_tree = NodeTree(node_dict)
 
         Model.__init__(self, node_tree)
 
