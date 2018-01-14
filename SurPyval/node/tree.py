@@ -30,7 +30,26 @@ class NodeTree:
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()
 
-    def update(self, updated_node_dict: Dict[str, Node]):
+    def __getitem__(self, item: str):
+        return self.node_dict[item]
+
+    def update(self, updated_node_dict: Dict[str, Node]) -> 'NodeTree':
+        """
+        Upsert nodes in the tree
+
+        Nodes that are already in the tree will be updated
+        Original node_tree isn't modifed in the process
+
+        Parameters
+        ----------
+        updated_node_dict: Dict[str, Node]
+                           nodes to update or insert to the tree
+
+        Returns
+        -------
+        NodeTree
+            Updated NodeTree with new nodes
+        """
         return NodeTree({**self.node_dict, **updated_node_dict})
 
     def append_transformations(self, parameter_dict):
