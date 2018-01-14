@@ -30,6 +30,9 @@ class NodeTree:
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()
 
+    def update(self, updated_node_dict: Dict[str, Node]):
+        return NodeTree({**self.node_dict, **updated_node_dict})
+
     def append_transformations(self, parameter_dict):
         """
         Enrich the parameter dictionary with transformed parameters
