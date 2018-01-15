@@ -64,7 +64,13 @@ class Model:
         array_like
             flat array of parameters
         """
-        neg_lok_lik = lambda *args: -self.node_tree.logpdf(*args)
-        result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
+
+        def neg_lok_lik(*args):
+            lik = -self.node_tree.logpdf(*args)
+            if lik is None or np.isnan(lik):
+                return -np.inf
+            return lik
+
+        result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()), method='Nelder-Mead')
         max_lik_point = result["x"]
         return max_lik_point

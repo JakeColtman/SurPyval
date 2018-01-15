@@ -8,13 +8,13 @@ from SurPyval.model.model import Model
 def create_prior_from_deaths_and_total_observed_time(parameter_name, deaths, total_observed_time):
     alpha = deaths
     llambda = total_observed_time
-    return gamma({parameter_name: "x"}, {"shape": alpha, "scale": llambda})
+    return gamma({parameter_name: "x"}, {"a": alpha, "scale": llambda})
 
 
 def create_prior_from_deaths_and_average_lifetime(parameter_name, deaths, average_lifetime):
     alpha = deaths
     llambda = average_lifetime * deaths
-    return gamma({parameter_name: "x"}, {"shape": alpha, "scale": llambda})
+    return gamma({parameter_name: "x"}, {"a": alpha, "scale": llambda})
 
 
 class FittedExponential(Model):
@@ -42,7 +42,7 @@ class FittedExponential(Model):
             "event": DataNode("event", event)
         }
 
-        node_tree = NodeTree( node_dict)
+        node_tree = NodeTree(node_dict)
 
         Model.__init__(self, node_tree)
 
