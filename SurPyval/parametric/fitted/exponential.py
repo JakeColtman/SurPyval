@@ -1,20 +1,21 @@
 import numpy as np
 import scipy.stats
 
-from SurPyval.node import NodeTree, Node, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
+from SurPyval.node import NodeTree, gamma, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
 from SurPyval.model.model import Model
 
 
-# def create_prior_from_deaths_and_total_observed_time(deaths, total_observed_time):
-#     alpha = deaths
-#     llambda = total_observed_time
-#     return Gamma(alpha, llambda)
-#
-# def create_prior_from_deaths_and_average_lifetime(deaths, average_lifetime):
-#     alpha = deaths
-#     llambda = average_lifetime * deaths
-#     return Gamma(alpha, llambda)
-#
+def create_prior_from_deaths_and_total_observed_time(parameter_name, deaths, total_observed_time):
+    alpha = deaths
+    llambda = total_observed_time
+    return gamma({parameter_name: "x"}, {"shape": alpha, "scale": llambda})
+
+
+def create_prior_from_deaths_and_average_lifetime(parameter_name, deaths, average_lifetime):
+    alpha = deaths
+    llambda = average_lifetime * deaths
+    return gamma({parameter_name: "x"}, {"shape": alpha, "scale": llambda})
+
 
 class FittedExponential(Model):
     """
