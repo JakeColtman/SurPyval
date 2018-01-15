@@ -35,8 +35,8 @@ class ExponentialRegression(Model):
     def __init__(self, y, event, x, beta_prior):
 
         alpha = DeterministicNode(
-                lambda data_dict, parameter_dict: np.sum(data_dict["x"] * parameter_dict["beta"], axis=1),
-                "llambda")
+                lambda data_dict, parameter_dict: np.exp(np.sum(data_dict["x"] * parameter_dict["beta"], axis=1)),
+                "alpha")
 
         node_dict = {
             "beta": ParameterNode(beta_prior, "beta", 1),
