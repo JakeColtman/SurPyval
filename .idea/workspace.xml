@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/datanode.py" afterPath="$PROJECT_DIR$/SurPyval/node/datanode.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/tree.py" afterPath="$PROJECT_DIR$/SurPyval/node/tree.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +33,44 @@
       <file leaf-file-name="exponential.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+            <state relative-caret-position="330">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weibull.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="exponential.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/model/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -42,44 +79,20 @@
       <file leaf-file-name="node.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="41" column="45" lean-forward="false" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
+            <state relative-caret-position="462">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tree.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tree.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="157" column="54" lean-forward="true" selection-start-line="157" selection-start-column="54" selection-end-line="157" selection-end-column="54" />
+            <state relative-caret-position="330">
+              <caret line="147" column="40" lean-forward="true" selection-start-line="147" selection-start-column="40" selection-end-line="147" selection-end-column="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/model/model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fitmodel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/model/fitmodel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,8 +111,8 @@
       <file leaf-file-name="weibull.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="698">
-              <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+            <state relative-caret-position="-132">
+              <caret line="12" column="60" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -110,22 +123,10 @@
       <file leaf-file-name="datalikihoodnode.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/node/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="5" column="49" lean-forward="false" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-              <folding>
-                <element signature="e#0#65#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,8 +135,8 @@
       <file leaf-file-name="parameter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/node/parameter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+            <state relative-caret-position="660">
+              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -183,7 +184,6 @@
         <option value="$PROJECT_DIR$/SurPyval/CoxPH.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" />
         <option value="$PROJECT_DIR$/SurPyval/distributions/arbitrary.py" />
         <option value="$PROJECT_DIR$/SurPyval/distributions/datalikihood.py" />
         <option value="$PROJECT_DIR$/SurPyval/distributions/distribution.py" />
@@ -200,12 +200,10 @@
         <option value="$PROJECT_DIR$/docs/source/index.txt" />
         <option value="$PROJECT_DIR$/SurPyval/parameter/__init__.py" />
         <option value="$PROJECT_DIR$/docs/source/sampler.txt" />
-        <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
         <option value="$PROJECT_DIR$/SurPyval/parameter/parameter.py" />
         <option value="$PROJECT_DIR$/SurPyval/model/__init__.py" />
         <option value="$PROJECT_DIR$/SurPyval/model/model.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/transformation.py" />
-        <option value="$PROJECT_DIR$/SurPyval/node/parameter.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/SurPyval/node/node.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py" />
@@ -214,6 +212,10 @@
         <option value="$PROJECT_DIR$/SurPyval/model/fitmodel.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/datanode.py" />
         <option value="$PROJECT_DIR$/SurPyval/node/tree.py" />
+        <option value="$PROJECT_DIR$/SurPyval/node/parameter.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" />
       </list>
     </option>
   </component>
@@ -284,6 +286,13 @@
               <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
               <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
               <item name="parametric" type="462c0819:PsiDirectoryNode" />
+              <item name="fitted" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SurPyval" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
+              <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
+              <item name="parametric" type="462c0819:PsiDirectoryNode" />
               <item name="regression" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -307,12 +316,12 @@
     <property name="prop_add_unversioned_files" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jacoltman\Documents\SurPyval\docs\source" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jacoltman\Documents\SurPyval\SurPyval\node" />
       <recent name="C:\Users\jacoltman\Documents\SurPyval\SurPyval\parameter" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jacoltman\Documents\SurPyval\docs\source" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -798,7 +807,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515922873467</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Add some documentation">
+      <created>1515923663734</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1515923663734</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -890,7 +906,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add type hinting" />
     <MESSAGE value="Add documentation and type hinting" />
     <MESSAGE value="Add sphinx for documentation" />
     <MESSAGE value="Simplify ExponenetialRegression API" />
@@ -915,7 +930,8 @@
     <MESSAGE value="Add a node class to encapsulate fixed data" />
     <MESSAGE value="Only accept data through nodes in the node tree" />
     <MESSAGE value="Add helper method to update a node_dict.  Useful for doing thinks like predicting new data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add helper method to update a node_dict.  Useful for doing thinks like predicting new data" />
+    <MESSAGE value="Add some documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add some documentation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -928,7 +944,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,20 +1019,6 @@
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/arbitrary.py" />
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/gaussian.py" />
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/gamma.py" />
-    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="52" column="41" lean-forward="false" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/distribution.py" />
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/datalikihood.py" />
     <entry file="file://$PROJECT_DIR$/SurPyval/distributions/inverteddistribution.py" />
@@ -1119,29 +1123,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/model/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" lean-forward="false" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/node/transformation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1089">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/node/parameter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1167,14 +1154,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/node/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1182,34 +1161,6 @@
           <folding>
             <element signature="e#0#65#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="698">
-          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/node/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="41" column="45" lean-forward="false" selection-start-line="41" selection-start-column="45" selection-end-line="41" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1233,8 +1184,84 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/node/tree.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="147" column="40" lean-forward="true" selection-start-line="147" selection-start-column="40" selection-end-line="147" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/model/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="38" lean-forward="true" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/node/parameter.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
-          <caret line="157" column="54" lean-forward="true" selection-start-line="157" selection-start-column="54" selection-end-line="157" selection-end-column="54" />
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/node/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="12" column="60" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

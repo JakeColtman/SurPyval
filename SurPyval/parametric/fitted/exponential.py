@@ -1,47 +1,22 @@
+import numpy as np
+import scipy.stats
 
-import seaborn as sns
-
-from SurPyval.distributions.gamma import Gamma
-from SurPyval.core.sampling import NumpySampler
+from SurPyval.node import NodeTree, Node, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
+from SurPyval.model.model import Model
 
 
-def create_prior_from_deaths_and_total_observed_time(deaths, total_observed_time):
-    alpha = deaths
-    llambda = total_observed_time
-    return Gamma(alpha, llambda)
+# def create_prior_from_deaths_and_total_observed_time(deaths, total_observed_time):
+#     alpha = deaths
+#     llambda = total_observed_time
+#     return Gamma(alpha, llambda)
+#
+# def create_prior_from_deaths_and_average_lifetime(deaths, average_lifetime):
+#     alpha = deaths
+#     llambda = average_lifetime * deaths
+#     return Gamma(alpha, llambda)
+#
 
-def create_prior_from_deaths_and_average_lifetime(deaths, average_lifetime):
-    alpha = deaths
-    llambda = average_lifetime * deaths
-    return Gamma(alpha, llambda)
-
-class DistributionNode:
-    
-    def __init__(self, name, prior_distribution, posterior_distribution):
-        self.name = name
-        self.prior = prior_distribution
-        self.posterior = posterior_distribution
-
-    def sample_prior(self, n_samples = 10000):
-        return self.prior.sample(n_samples)
-
-    def sample_posterior(self, n_samples = 10000):
-        return self.posterior.sample(n_samples)
-
-class PosteriorPredictiveDistribution(NumpySampler):
-
-    def __init__(self, gamma_distribution):
-        self.distr = gamma_distribution
-
-    def sample(self, n_samples):
-        samples = self.distr.sample(n_samples)
-        posterior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
-        return posterior_predictive_samples
-
-    def plot(self, n_samples = 10000):
-        sns.distplot(self.sample(n_samples))
-
-class FittedExponential:
+class FittedExponential(Model):
     """
         Fit an exponential distribution to the life lengths
 
@@ -59,21 +34,16 @@ class FittedExponential:
                 lambda => Total observed time
     """
 
-
-    def __init__(self, prior_dict, y, event):
-        self.prior_dict = prior_dict
-        self.d = np.sum(event)
-        self.y_sum = np.sum(y)
-        llambda_posterior = Gamma(prior.alpha + self.d, prior.llambda + self.y_sum)
-
-        self.constants = {"alpha_0": prior_dict["llambda"].alpha, "llambda_0": prior_dict["llambda"].llambda}
-        self.nodes = {
-            "llambda": DistributionNode("llambda", prior_dict["llambda"], llambda_posterior),
-            "y": DistributionNode("y", PosteriorPredictiveDistribution(prior_dict["llambda"]), PosteriorPredictiveDistribution(llambda_posterior))
+    def __init__(self, y, event, alpha_prior):
+        node_dict = {
+            "alpha": alpha_prior,
+            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale"}),
+            "event": DataNode("event", event)
         }
 
-    def fit(self):
-        pass
+        node_tree = NodeTree( node_dict)
+
+        Model.__init__(self, node_tree)
 
     @staticmethod
     def show_plate():

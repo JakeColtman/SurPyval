@@ -1,12 +1,8 @@
 import numpy as np
 import scipy.stats
 
-from SurPyval.node.tree import NodeTree
-from SurPyval.node.node import Node
-from SurPyval.node.transformation import Transformation
+from SurPyval.node import NodeTree, Node, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
 from SurPyval.model.model import Model
-from SurPyval.node.parameter import Parameter
-from SurPyval.node.datalikihoodnode import DataLikihoodNode
 
 
 class ExponentialRegression(Model):
@@ -29,7 +25,7 @@ class ExponentialRegression(Model):
 
         Examples
         --------
-        >>> from SurPyval.node.node import gaussian
+        >>> from SurPyval.node import gaussian
         >>> import pandas as pd
         >>> beta_prior = gaussian({"beta": "x"}, constant_dict={"loc": 0.0, "scale": 100.0})
         >>> data = pd.DataFrame({"y": [1.0, 2.0], "x_0": [1.0, 1.0], "event": [1, 0]})
@@ -38,29 +34,19 @@ class ExponentialRegression(Model):
 
     def __init__(self, y, event, x, beta_prior):
 
-        data_dict = {
-            "y": y,
-            "x": x,
-            "event": event
-        }
-
-        transformations = [
-            Transformation(
-                lambda data_dict, parameter_dict: np.exp( np.sum( data_dict["x"] * parameter_dict["beta"], axis=1)),
-                "alpha")
-        ]
+        alpha = DeterministicNode(
+                lambda data_dict, parameter_dict: np.sum(data_dict["x"] * parameter_dict["beta"], axis=1),
+                "llambda")
 
         node_dict = {
-            "beta": beta_prior,
-            "y": DataLikihoodNode(scipy.stats.expon, {"alpha": "scale"})
+            "beta": ParameterNode(beta_prior, "beta", 1),
+            "alpha": alpha,
+            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale"}),
+            "x": DataNode("x", x),
+            "event": DataNode("event", event),
         }
-        parameters = [
-            Parameter("beta", 1)
-        ]
-        node_tree = NodeTree(node_dict,
-                             data_dict,
-                             parameters,
-                             transformations)
+
+        node_tree = NodeTree(node_dict)
 
         Model.__init__(self, node_tree)
 

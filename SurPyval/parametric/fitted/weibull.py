@@ -1,30 +1,9 @@
 import numpy as np
+import scipy.stats
 
-from SurPyval.node.parameter import Parameter
-from SurPyval.node.tree import NodeTree
+from SurPyval.node import NodeTree, Node, DataNode, DeterministicNode, ParameterNode, DataLikihoodNode
 from SurPyval.model.model import Model
 
-def likihood_distr(y, x, alpha, llambda):
-    if alpha <= 0 or llambda <= 0:
-        return - np.inf
-    return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
-
-def survival_distr(y, x, alpha, llambda):
-    if alpha <= 0 or llambda <= 0:
-        return - np.inf
-    return self.data["d"] * np.log(alpha) + self.data["d"] * llambda + (alpha - 1) * np.sum(self.data["event"] * np.log(self.data["y"])) - np.sum(np.exp(llambda) * self.data["y"] ** alpha)
-
-class LikihoodNode(Node):
-    
-    def __init__(self, y, event, x, parameter_dict = {"alpha": "alpha", "llambda": "llambda"}):
-        self.parameter_names = parameter_dict.values()
-        self.parameter_dict = parameter_dict
-        self.distribution = DataLikihood(likihood_distr, survival_distr, y, event, x)
-
-    def sample(self, x, n_samples):
-        samples = np.exp(np.dot(x.T, self.distribution.sample(n_samples).T))
-        prior_predictive_samples = np.array(map(lambda x: np.random.exponential(1.0 / x), samples))
-        return prior_predictive_samples
 
 class FittedWeibull(Model):
     """
@@ -45,16 +24,18 @@ class FittedWeibull(Model):
             This means that fitting the model requires some numerical approximation, currently MCMC
     """
 
-    def __init__(self, prior_dict, y, event):
+    def __init__(self, y, event, alpha_prior, llambda_prior):
 
-        self.parameters = [Parameter("alpha", 1), Parameter("llambda", 1)]
-
-        self.node_dict = {
-            "alpha": prior_dict["alpha"],
-            "llambda": prior_dict["llambda"],
-            "y": LikihoodNode(y, event, x)
+        node_dict = {
+            "alpha": alpha_prior,
+            "llambda": llambda_prior,
+            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "shape", "llambda": "scale"}),
+            "event": DataNode("event", event)
         }
-        self.node_tree = NodeTree(self.node_dict, self.parameters)
+
+        node_tree = NodeTree(node_dict)
+
+        Model.__init__(self, node_tree)
 
     @staticmethod
     def show_plate():
