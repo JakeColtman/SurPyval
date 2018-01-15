@@ -58,7 +58,7 @@ class Model:
 
         def neg_lok_lik(*args):
             lik = -self.node_tree.logpdf(*args)
-            if lik is None or np.isnan(lik):
+            if lik is None or np.any(np.isnan(lik)):
                 return -np.inf
             return lik
 

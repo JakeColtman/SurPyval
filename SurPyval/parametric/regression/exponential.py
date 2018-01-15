@@ -41,7 +41,7 @@ class ExponentialRegression(Model):
         node_dict = {
             "beta": ParameterNode(beta_prior, "beta", 1),
             "alpha": alpha,
-            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale"}),
+            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale", "y": "x"}),
             "x": DataNode("x", x),
             "event": DataNode("event", event),
         }
