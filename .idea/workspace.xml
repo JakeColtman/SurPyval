@@ -4,8 +4,6 @@
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +55,8 @@
       <file leaf-file-name="exponential.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state relative-caret-position="297">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -814,7 +812,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515923663734</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Port other Models onto the updated API">
+      <created>1515998924856</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1515998924856</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -906,7 +911,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add documentation and type hinting" />
     <MESSAGE value="Add sphinx for documentation" />
     <MESSAGE value="Simplify ExponenetialRegression API" />
     <MESSAGE value="Add types to NodeTree init" />
@@ -931,7 +935,8 @@
     <MESSAGE value="Only accept data through nodes in the node tree" />
     <MESSAGE value="Add helper method to update a node_dict.  Useful for doing thinks like predicting new data" />
     <MESSAGE value="Add some documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add some documentation" />
+    <MESSAGE value="Port other Models onto the updated API" />
+    <option name="LAST_COMMIT_MESSAGE" value="Port other Models onto the updated API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1260,8 +1265,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        <state relative-caret-position="297">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

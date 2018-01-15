@@ -21,7 +21,7 @@ class FittedExponential(Model):
         Fit an exponential distribution to the life lengths
 
         Nodes:
-            * llambda - the main parameter for the expoential distribution
+            * llambda - the main parameter for the exponential distribution
             * y - predictive distribution for lifetime
 
         Likihood: 
