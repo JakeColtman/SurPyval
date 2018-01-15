@@ -25,7 +25,7 @@ class NodeTree:
         self.transformations: List[DeterministicNode] = [x for x in node_dict.values() if type(x) is DeterministicNode]
         self.likihood_nodes: List[DataLikihoodNode] = [x for x in node_dict.values() if type(x) is DataLikihoodNode]
 
-        self.data_dict = {x[0]: x[1].data for x in node_dict.items() if type(x[1]) is DataLikihoodNode or type(x[1]) is DataNode}
+        self.data_dict = {x[0]: x[1].data for x in node_dict.items() if type(x[1]) is type(x[1]) is DataNode}
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()

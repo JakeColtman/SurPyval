@@ -22,7 +22,7 @@ class FittedExponential(Model):
         Fit an exponential distribution to the life lengths
 
         Nodes:
-            * llambda - the main parameter for the exponential distribution
+            * alpha - the scale of the exponential distribution
             * y - predictive distribution for lifetime
 
         Likihood: 
@@ -38,7 +38,7 @@ class FittedExponential(Model):
     def __init__(self, y, event, alpha_prior):
         node_dict = {
             "alpha": alpha_prior,
-            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale"}),
+            "y": DataLikihoodNode(scipy.stats.expon, y, {"alpha": "scale", "y": "x"}),
             "event": DataNode("event", event)
         }
 

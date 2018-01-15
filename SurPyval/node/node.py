@@ -48,7 +48,7 @@ class Node:
     def parse_unflattened_parameters(self, **kwargs):
         filtered_kwargs = {x: kwargs[x] for x in kwargs if x in self.parameter_names}
         renamed_kwargs = {self.parameter_dict[x]: filtered_kwargs[x] for x in filtered_kwargs}
-        return {**renamed_kwargs, **self.constants_dict}
+        return {**self.constants_dict, **renamed_kwargs}
 
     def logpdf(self, **kwargs):
         return self.distribution.logpdf(**self.parse_unflattened_parameters(**kwargs))
@@ -56,8 +56,11 @@ class Node:
     def pdf(self, **kwargs):
         return self.distribution.logpdf(**self.parse_unflattened_parameters(**kwargs))
 
-    def ppf(self, **kwargs):
-        return self.distribution.ppf(**self.parse_unflattened_parameters(**kwargs))
+    def sf(self, **kwargs):
+        return self.distribution.sf(**self.parse_unflattened_parameters(**kwargs))
+
+    def ppf(self, q, **kwargs):
+        return self.distribution.ppf(q, **self.parse_unflattened_parameters(**kwargs))
 
     def sample(self, size=1, **kwargs):
         """
