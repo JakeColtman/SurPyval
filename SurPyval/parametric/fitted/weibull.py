@@ -29,7 +29,7 @@ class FittedWeibull(Model):
         node_dict = {
             "alpha": alpha_prior,
             "llambda": llambda_prior,
-            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "shape", "llambda": "scale"}),
+            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "shape", "llambda": "scale", "y": "x"}),
             "event": DataNode("event", event)
         }
 

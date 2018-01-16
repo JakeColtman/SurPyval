@@ -37,7 +37,7 @@ class WeibullRegression(Model):
             "beta": ParameterNode(beta_prior, "beta", 1),
             "alpha": ParameterNode(alpha_prior, "alpha", 1),
             "llambda": llambda,
-            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "c", "llambda": "scale"}),
+            "y": DataLikihoodNode(scipy.stats.weibull_min, y, {"alpha": "c", "llambda": "scale", "y": x}),
             "x": DataNode("x", x),
             "event": DataNode("event", event),
         }
