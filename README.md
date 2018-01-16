@@ -22,6 +22,7 @@ All models in SurPyval are build around graphical models.  Every model can retur
 
 #### Thin wrapper over common libraries
 
+
 Allowing modification and tweaking is much less valuable if doing so requires learning a complex new API.  To make the process as simple as possible, most SuPyval classes and objects are relatively thin wrappers over classes from libraries like scipy and emcee.  SurPyval objects are eager to expose these common libraries to the user
 
 #### Trade offs
