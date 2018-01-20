@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SurPyval.iml" afterPath="$PROJECT_DIR$/.idea/SurPyval.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/fitmodel.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/model/model.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/datalikihoodnode.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/datanode.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/node.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/parameter.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/transformation.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/node/tree.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/exponential.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/fitted/weibull.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/exponential.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression/weibull.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/samplers/__init__.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/samplers/emceesampler.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/SurPyval/samplers/sampler.py" afterPath="" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,11 +61,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conf.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="496">
               <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fitted.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="regression.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -202,6 +203,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/SurPyval/semiparametric/piecewise/datalikihoodnode.py" />
         <option value="$PROJECT_DIR$/SurPyval/semiparametric/piecewise/proportionalhazards.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/blocks.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/fitted.py" />
+        <option value="$PROJECT_DIR$/SurPyval/parametric/regression.py" />
       </list>
     </option>
   </component>
@@ -865,7 +869,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516095172128</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Purge old structure">
+      <created>1516470714233</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1516470714233</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -957,7 +968,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="README" />
     <MESSAGE value="Implement Weibull regression in pre-baked models" />
     <MESSAGE value="Add ability to sample replicate of data" />
     <MESSAGE value="Don't include priors in the posterior sample" />
@@ -982,7 +992,8 @@
     <MESSAGE value="Correct other model APIs to support survival sampling" />
     <MESSAGE value="Update README.md to be less horribly written" />
     <MESSAGE value="Starting point of piecewise proportional hazards" />
-    <option name="LAST_COMMIT_MESSAGE" value="Starting point of piecewise proportional hazards" />
+    <MESSAGE value="Purge old structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Purge old structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -991,14 +1002,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SurPyval/distributions/distribution.py" />
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1270,6 +1273,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
           <folding />
         </state>
       </provider>
