@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f09299c-dce2-4aad-b8c8-30e79a6a1b64" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/SurPyval/parametric/fitted.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/parametric/regression.py" afterPath="$PROJECT_DIR$/SurPyval/parametric/regression.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/semiparametric/ml/__init__.py" afterPath="$PROJECT_DIR$/SurPyval/semiparametric/piecewiseconstant.py" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/semiparametric/ml/piecewiseprophazards.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/semiparametric/piecewise/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/semiparametric/piecewise/datalikihoodnode.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/SurPyval/semiparametric/piecewise/proportionalhazards.py" afterPath="" />
     </list>
     <ignored path="SurPyval.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,34 +33,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/__init__.py">
+      <file leaf-file-name="piecewiseconstant.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewiseconstant.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1872">
+              <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="datalikihoodnode.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/datalikihoodnode.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="proportionalhazards.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/proportionalhazards.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -74,18 +56,18 @@
       <file leaf-file-name="fitted.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="regression.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="regression.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            <state relative-caret-position="1011">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -206,6 +188,7 @@
         <option value="$PROJECT_DIR$/SurPyval/parametric/blocks.py" />
         <option value="$PROJECT_DIR$/SurPyval/parametric/fitted.py" />
         <option value="$PROJECT_DIR$/SurPyval/parametric/regression.py" />
+        <option value="$PROJECT_DIR$/SurPyval/semiparametric/piecewiseconstant.py" />
       </list>
     </option>
   </component>
@@ -270,13 +253,6 @@
               <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
               <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
               <item name="semiparametric" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SurPyval" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
-              <item name="SurPyval" type="462c0819:PsiDirectoryNode" />
-              <item name="semiparametric" type="462c0819:PsiDirectoryNode" />
-              <item name="piecewise" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -876,7 +852,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516470714233</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="PoC for new right pymc3 integration approach">
+      <created>1516474726380</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1516474726380</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -928,7 +911,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="16" side_tool="true" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.025" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="0" y="0" width="796" height="1846" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21049754" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2865697" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2865697" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2352438" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21043627" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2421875" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -968,7 +951,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implement Weibull regression in pre-baked models" />
     <MESSAGE value="Add ability to sample replicate of data" />
     <MESSAGE value="Don't include priors in the posterior sample" />
     <MESSAGE value="Add ability to predict for new data" />
@@ -993,7 +975,8 @@
     <MESSAGE value="Update README.md to be less horribly written" />
     <MESSAGE value="Starting point of piecewise proportional hazards" />
     <MESSAGE value="Purge old structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Purge old structure" />
+    <MESSAGE value="PoC for new right pymc3 integration approach" />
+    <option name="LAST_COMMIT_MESSAGE" value="PoC for new right pymc3 integration approach" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1002,20 +985,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SurPyval/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/unittest/case.py" />
     <entry file="file://$PROJECT_DIR$/Tests/Kaplan-Meier.py" />
     <entry file="file://$PROJECT_DIR$/Tests/CoxPH.py" />
@@ -1211,24 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/datalikihoodnode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/proportionalhazards.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/make.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1277,18 +1228,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/ml/piecewiseprophazards.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/proportionalhazards.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="13" column="34" lean-forward="false" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewise/datalikihoodnode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/parametric/fitted.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SurPyval/parametric/regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        <state relative-caret-position="1011">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SurPyval/semiparametric/piecewiseconstant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1872">
+          <caret line="52" column="17" lean-forward="true" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
           <folding />
         </state>
       </provider>
