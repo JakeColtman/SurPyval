@@ -2,25 +2,32 @@
 
 # SurPyval
 
-SurPyval is a Bayesian survival analysis library
+SurPyval is a Bayesian survival analysis library.
+
+## Why use
+
+SurPyval is aimed at people who are using survival analysis libraries like lifelines, but who want more flexibility and access to Bayesian approaches.
+
+Users who are new to Bayesianism can make use of sensible defaults and helper methods, while power users can take extremely detailed control of models.
 
 ## Philosophy:
-    
-    * Models should be transparent about their assumptions and workings
-    * Models should allow tweaks and modifications
 
-Implementing this philosophy has a number of positive effects on the library:
+SurPyval is built on the core philosophy that it should be as easy as possible for users to understand and tweak models.  Many statistical libraries are really easy to use until you want a slightly different assumption, which they cannot support.
 
-    * The log-likihood and plate diagrams of models are exposed
-    * Models are created through composition of simple units
-    * SurPyval objects thinly wrap and expose well-know libraries (esp. scipy)
-    * There are no hand-offs to non-python objects
-    * Models allow for substitution of any of their composite blocks
-    
-The trade-off to get these goods is performance.  Models provide in the library are designed to be tweakable, which limits performance optimizations.  This manifests itself in a number of ways:
+There are two main architectural decisions this has entailed:
 
-    * Straight up crunching speed
-    * Memory useage
-    * Models often don't exploit conjugacy where it exists
+#### Graph centric
+
+All models in SurPyval are build around graphical models.  Every model can return a plate diagram of its likelihood function.  Digger deeper, models are actually made through composing together different variable "Nodes".  To change the model, we can simply swap out or add nodes to the model's graph
+
+#### Thin wrapper over common libraries
+
+Allowing modification and tweaking is much less valuable if doing so requires learning a complex new API.  To make the process as simple as possible, most SuPyval classes and objects are relatively thin wrappers over classes from libraries like scipy and emcee.  SurPyval objects are eager to expose these common libraries to the user
+
+#### Trade offs
+
+In general, SuPyval is comfortable with paying for composability and modifiability with performance.  For a lot of tasks, SurPyval won't run as quickly as (say) a custom written Stan model.  However:
     
-For very large data sets or very complicated models, you might be better off using something like Stan.
+    * For data sets with 6 figure rows, the slow down isn't much of a problem
+    * Any performance loss is asymetrrical, some use cases will be blazing fast
+    * There are ways of mitigating this (see performance part of docs)

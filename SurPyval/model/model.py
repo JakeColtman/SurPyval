@@ -1,5 +1,4 @@
 from scipy.optimize import minimize
-import emcee as em
 import numpy as np
 
 from SurPyval.node.tree import NodeTree
@@ -40,16 +39,8 @@ class Model:
             The function has the side effect of populating self.posterior
         """
 
-        def generate_starting_points():
-            max_lik_point = self.maximum_likihood()
-            return [max_lik_point + np.random.normal(0, 0.01, int(self.node_tree.length())) for x in range(n_walkers)]
-        
-        ndim = self.node_tree.length()
-        sampler = em.EnsembleSampler(n_walkers, ndim, self.node_tree.logpdf)
-        p0 = generate_starting_points()
-        pos, prob, state = sampler.run_mcmc(p0, burn)
-        
-        posterior = EmceeSampler(sampler, pos)
+        posterior = EmceeSampler(self.node_tree.logpdf, self.maximum_likihood(), n_walkers)
+        posterior.sample(burn)
         return FitModel(self.node_tree, posterior)
 
     def maximum_likihood(self):
@@ -64,7 +55,13 @@ class Model:
         array_like
             flat array of parameters
         """
-        neg_lok_lik = lambda *args: -self.node_tree.logpdf(*args)
-        result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()))
+
+        def neg_lok_lik(*args):
+            lik = -self.node_tree.logpdf(*args)
+            if lik is None or np.any(np.isnan(lik)):
+                return -np.inf
+            return lik
+
+        result = minimize(neg_lok_lik, np.array([1] * self.node_tree.length()), method='Nelder-Mead')
         max_lik_point = result["x"]
         return max_lik_point

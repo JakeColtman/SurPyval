@@ -5,6 +5,7 @@ from SurPyval.node.parameter import ParameterNode
 from SurPyval.node.node import Node
 from SurPyval.node.transformation import DeterministicNode
 from SurPyval.node.datalikihoodnode import DataLikihoodNode
+from SurPyval.node.datanode import DataNode
 
 
 class NodeTree:
@@ -19,15 +20,37 @@ class NodeTree:
                    lookup from name to data (e.g. (event->np.array([True, False, True])
     """
 
-    def __init__(self, node_dict: Dict[str, Node], data_dict: Dict[str, Any]):
+    def __init__(self, node_dict: Dict[str, Node]):
         self.parameters: List[ParameterNode] = [x for x in node_dict.values() if type(x) is ParameterNode]
         self.transformations: List[DeterministicNode] = [x for x in node_dict.values() if type(x) is DeterministicNode]
         self.likihood_nodes: List[DataLikihoodNode] = [x for x in node_dict.values() if type(x) is DataLikihoodNode]
 
-        self.data_dict = data_dict
+        self.data_dict = {x[0]: x[1].data for x in node_dict.items() if type(x[1]) is type(x[1]) is DataNode}
         self.node_dict = node_dict
         self.node_names = sorted(node_dict.keys())
         self.flat_split_point = self.flattened_parameter_split_points()
+
+    def __getitem__(self, item: str):
+        return self.node_dict[item]
+
+    def update(self, updated_node_dict: Dict[str, Node]) -> 'NodeTree':
+        """
+        Upsert nodes in the tree
+
+        Nodes that are already in the tree will be updated
+        Original node_tree isn't modifed in the process
+
+        Parameters
+        ----------
+        updated_node_dict: Dict[str, Node]
+                           nodes to update or insert to the tree
+
+        Returns
+        -------
+        NodeTree
+            Updated NodeTree with new nodes
+        """
+        return NodeTree({**self.node_dict, **updated_node_dict})
 
     def append_transformations(self, parameter_dict):
         """
